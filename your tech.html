@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#08090c" />
+  <title>Your Tech | متجر التقنية</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Changa:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#08090c;--surface:#111318;--surface2:#171a20;--text:#f4f6fa;--muted:#a8adba;--cyan:#21e6d1;--purple:#8e67ff;--danger:#ff5f78;--shadow:0 20px 55px rgba(0,0,0,.35)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Tajawal,Arial,sans-serif;overflow-x:hidden}button,input,select{font:inherit}button{cursor:pointer;border:0}.container{width:min(1180px,calc(100% - 40px));margin:auto}
+    .topbar{background:linear-gradient(90deg,#15102b,#0b3341);border-bottom:1px solid #2c3c49;color:#d8f9f5;font-size:13px}.topbar .container{display:flex;align-items:center;justify-content:space-between;min-height:38px}.topbar strong{color:var(--cyan)}
+    header{height:80px;background:rgba(8,9,12,.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.07);position:sticky;top:0;z-index:30}.nav{height:100%;display:flex;align-items:center;gap:30px}.brand{direction:ltr;display:flex;align-items:center;gap:10px;font-family:Changa,sans-serif;font-weight:800;font-size:23px;white-space:nowrap}.brand-mark{width:33px;height:33px;position:relative;border:3px solid var(--cyan);border-radius:8px;transform:skew(-9deg)}.brand-mark:after{content:"";position:absolute;width:12px;height:3px;background:var(--cyan);left:7px;top:12px;box-shadow:0 -7px 0 var(--purple),0 7px 0 var(--purple)}.brand em{font-style:normal;color:var(--cyan)}
+    .nav-links{display:flex;gap:22px;margin-inline-start:auto}.nav-links a{color:#c6cad4;text-decoration:none;font-size:14px;transition:.2s}.nav-links a:hover,.nav-links a.active{color:var(--cyan)}.nav-actions{display:flex;align-items:center;gap:8px}.icon-btn{width:40px;height:40px;border-radius:10px;color:#e7eaf0;background:transparent;font-size:20px;position:relative;transition:.2s}.icon-btn:hover{background:var(--surface2);color:var(--cyan)}.cart-count{position:absolute;top:3px;right:0;min-width:16px;height:16px;border-radius:12px;background:var(--cyan);color:#031817;font:700 10px Tajawal;display:grid;place-items:center}.menu-btn{display:none}
+    .hero{position:relative;isolation:isolate;min-height:535px;display:flex;align-items:center;overflow:hidden;background:linear-gradient(90deg,rgba(8,9,12,.98) 0%,rgba(8,9,12,.83) 47%,rgba(8,9,12,.22) 100%),url('https://images.unsplash.com/photo-1591238372338-22d30c883a86?auto=format&fit=crop&w=1800&q=85') center/cover}.hero:before{content:"";z-index:-1;position:absolute;inset:0;background:radial-gradient(circle at 65% 60%,rgba(72,248,230,.22),transparent 27%),radial-gradient(circle at 85% 5%,rgba(142,103,255,.25),transparent 30%)}.hero-inner{padding:70px 0;max-width:590px}.eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--cyan);font-size:14px;font-weight:700}.eyebrow:before{content:"";width:24px;height:2px;background:var(--cyan)}h1{font-family:Changa,sans-serif;font-size:clamp(39px,5vw,68px);line-height:1.18;margin:13px 0 18px}.grad{background:linear-gradient(100deg,var(--cyan),#9b7cff);background-clip:text;-webkit-background-clip:text;color:transparent}.hero p{font-size:17px;color:#d1d5dc;line-height:1.9;max-width:530px;margin:0 0 27px}.hero-buttons{display:flex;gap:12px}.primary,.secondary{padding:13px 23px;border-radius:9px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:10px}.primary{background:var(--cyan);color:#05201e;box-shadow:0 10px 27px rgba(33,230,209,.21)}.secondary{border:1px solid #59616d;color:#fff}.hero-spec{margin-top:36px;display:flex;gap:24px;border-top:1px solid rgba(255,255,255,.2);padding-top:17px}.hero-spec b{display:block;color:white;font-size:15px}.hero-spec span{color:#aeb5c1;font-size:12px}
+    .trust{background:#101217;border-bottom:1px solid #252931}.trust .container{min-height:77px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;align-items:center}.trust-item{display:flex;gap:12px;align-items:center;justify-content:center;border-left:1px solid #292d35}.trust-item:last-child{border:0}.trust-icon{font-size:21px;color:var(--cyan)}.trust b{font-size:13px;display:block}.trust small{font-size:11px;color:var(--muted)}
+    section{padding:78px 0}.section-head{display:flex;align-items:end;justify-content:space-between;margin-bottom:28px}.section-kicker{color:var(--cyan);font-size:13px;font-weight:700}.section-title{font-family:Changa,sans-serif;font-size:29px;margin:4px 0 0}.all-link{color:var(--cyan);font-size:14px;text-decoration:none}
+    .categories{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.category{height:200px;display:flex;flex-direction:column;justify-content:end;padding:20px;border:1px solid #2a2e37;border-radius:13px;position:relative;overflow:hidden;color:#fff;text-decoration:none;background:#16191f}.category img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.57;transition:.4s}.category:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(4,6,10,.95),rgba(7,9,12,.0) 80%)}.category:hover img{transform:scale(1.09);opacity:.8}.category h3,.category span{position:relative;z-index:1;margin:0}.category h3{font-family:Changa;font-size:18px}.category span{color:#bec4cd;font-size:12px}
+    .products-area{background:#0d0f13;border-block:1px solid #21252d}.toolbar{display:flex;justify-content:space-between;gap:15px;margin:-4px 0 25px}.filter-tabs{display:flex;gap:9px;flex-wrap:wrap}.filter{background:#181b21;color:#adb3bf;padding:9px 14px;border-radius:7px;font-size:13px}.filter.active,.filter:hover{background:var(--cyan);color:#06211f}.sort{background:#181b21;border:1px solid #2c3039;color:#dae0e8;border-radius:7px;padding:8px 12px;font-size:13px}.products{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.product{min-width:0;background:var(--surface);border:1px solid #252a33;border-radius:12px;overflow:hidden;position:relative;transition:.25s}.product:hover{transform:translateY(-5px);border-color:#41535a;box-shadow:var(--shadow)}.product-image{height:202px;background:#f5f6f7;position:relative;overflow:hidden}.product-image img{width:100%;height:100%;object-fit:contain;padding:12px;transition:.35s}.product:hover .product-image img{transform:scale(1.06)}.badge{position:absolute;top:11px;right:11px;padding:5px 9px;border-radius:5px;background:var(--purple);font-size:11px;font-weight:700;color:#fff;z-index:2}.badge.sale{background:var(--danger)}.wish{position:absolute;z-index:3;top:8px;left:8px;background:rgba(17,19,24,.78);color:#fff;width:34px;height:34px;border-radius:50%;font-size:16px}.wish.liked{color:#ff6380}.product-info{padding:15px}.product-type{font-size:11px;color:var(--cyan);font-weight:700}.product h3{font-size:14px;line-height:1.6;margin:5px 0 9px;height:43px;overflow:hidden}.rating{color:#ffd166;font-size:12px}.rating span{color:#959ca9;margin-right:4px}.product-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:12px}.price{font-family:Changa;font-weight:700;font-size:18px}.old-price{font-size:11px;color:#848b97;text-decoration:line-through;display:block;text-align:left}.add{width:34px;height:34px;border-radius:7px;background:#26313a;color:var(--cyan);font-size:21px}.add:hover{background:var(--cyan);color:#082421}
+    .promo{padding:0 0 78px;background:#0d0f13}.promo-box{min-height:270px;border-radius:16px;overflow:hidden;display:flex;align-items:center;padding:42px 55px;background:linear-gradient(100deg,rgba(14,10,32,.98) 0%,rgba(15,9,33,.87) 49%,rgba(14,10,32,.18)),url('https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=1500&q=85') center/cover;border:1px solid #3c3067}.promo-box h2{font-family:Changa;font-size:34px;margin:7px 0}.promo-box p{color:#ccd0dc;margin:0 0 18px}.promo-chip{color:#decaff;background:#562d9f55;border:1px solid #8e67ff;padding:5px 10px;border-radius:20px;font-size:12px}
+    .newsletter{padding:56px 0;background:linear-gradient(100deg,#0c343d,#1b1234)}.newsletter .container{display:flex;align-items:center;justify-content:space-between;gap:35px}.newsletter h2{font-family:Changa;font-size:28px;margin:0 0 5px}.newsletter p{margin:0;color:#b8d4d8;font-size:14px}.subscribe{display:flex;background:#080b10;border:1px solid #3d5960;padding:5px;border-radius:9px;min-width:380px}.subscribe input{border:0;background:transparent;outline:0;color:#fff;padding:0 12px;flex:1;direction:rtl}.subscribe button{background:var(--cyan);color:#06221f;border-radius:6px;padding:9px 17px;font-weight:700}
+    footer{background:#08090c;padding:55px 0 20px;border-top:1px solid #22262e}.footer-grid{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:30px}.footer-about{color:#929aa7;line-height:1.8;font-size:13px;margin:14px 0}.socials{display:flex;gap:8px}.socials a{display:grid;place-items:center;width:31px;height:31px;border:1px solid #343944;border-radius:6px;color:#cbd0da;text-decoration:none;font-size:13px}.footer-col h4{font-family:Changa;margin:0 0 14px;font-size:15px}.footer-col a{display:block;color:#929aa7;text-decoration:none;font-size:13px;margin:9px 0}.copyright{border-top:1px solid #232731;margin-top:35px;padding-top:18px;color:#69717d;font-size:12px;display:flex;justify-content:space-between}.payments{color:#bec5d0;font-size:17px;letter-spacing:5px}
+    .cart-panel{position:fixed;z-index:60;top:0;left:0;height:100%;width:min(390px,94vw);background:#111319;border-right:1px solid #303540;transform:translateX(-105%);transition:.35s;box-shadow:16px 0 60px #0008;display:flex;flex-direction:column}.cart-panel.open{transform:translateX(0)}.cart-header{display:flex;justify-content:space-between;align-items:center;padding:20px;border-bottom:1px solid #2a2f38}.cart-header h3{font-family:Changa;margin:0}.close{background:transparent;color:#fff;font-size:23px}.cart-items{padding:12px 18px;flex:1;overflow:auto}.cart-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #282d36}.cart-item img{width:62px;height:62px;object-fit:cover;background:#eee;border-radius:7px}.cart-item h4{font-size:13px;margin:2px 0 7px}.cart-item .price{font-size:15px}.qty{display:flex;align-items:center;gap:7px;margin-right:auto}.qty button{width:23px;height:23px;background:#242a34;color:#fff;border-radius:4px}.qty span{font-size:13px}.cart-footer{padding:18px;border-top:1px solid #2a2f38}.total{display:flex;justify-content:space-between;font-family:Changa;font-size:19px;margin-bottom:13px}.checkout{display:block;text-align:center;background:var(--cyan);color:#06211e;padding:13px;border-radius:7px;text-decoration:none;font-weight:800}.empty{text-align:center;color:#8e96a4;padding:35px 0}.overlay{position:fixed;z-index:50;inset:0;background:#000a;opacity:0;visibility:hidden;transition:.25s}.overlay.show{opacity:1;visibility:visible}.toast{position:fixed;z-index:70;right:50%;bottom:28px;transform:translate(50%,120px);background:#eafffb;color:#06312e;padding:12px 19px;border-radius:8px;font-size:14px;font-weight:700;box-shadow:var(--shadow);transition:.35s}.toast.show{transform:translate(50%,0)}
+    @media(max-width:900px){.nav-links{display:none}.menu-btn{display:block}.categories,.products{grid-template-columns:repeat(2,1fr)}.newsletter .container{align-items:flex-start;flex-direction:column}.trust .container{grid-template-columns:repeat(2,1fr);padding:12px 0}.trust-item{justify-content:flex-start;border:0}.footer-grid{grid-template-columns:1.4fr 1fr 1fr}.footer-col:last-child{display:none}}
+    @media(max-width:560px){.container{width:min(100% - 28px,1180px)}.topbar .container span:last-child{display:none}header{height:68px}.nav{gap:8px}.brand{font-size:19px}.hero{min-height:550px}.hero-inner{padding:55px 0}.hero p{font-size:15px}.hero-spec{gap:16px}.hero-spec b{font-size:13px}.categories{grid-template-columns:1fr 1fr;gap:10px}.category{height:150px;padding:13px}.section-title{font-size:24px}.products{gap:10px}.product-image{height:148px}.product-info{padding:11px}.product h3{font-size:12px;height:39px}.price{font-size:16px}.toolbar{flex-direction:column}.filter{padding:7px 10px}.sort{align-self:flex-start}.promo-box{padding:28px;min-height:260px}.promo-box h2{font-size:27px}.subscribe{min-width:0;width:100%}.footer-grid{grid-template-columns:1fr 1fr;gap:22px}.footer-grid>div:first-child{grid-column:1/-1}.copyright{flex-direction:column;gap:10px}.cart-count{top:1px}.icon-btn{width:35px}.hide-mobile{display:none}}
+  </style>
+</head>
+<body>
+  <div class="topbar"><div class="container"><span>🚚 شحن مجاني للطلبات فوق <strong>500 ر.س</strong></span><span>خدمة العملاء: 9200 12345</span></div></div>
+
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top"><span class="brand-mark"></span><span>Your <em>Tech</em></span></a>
+      <nav class="nav-links">
+        <a class="active" href="#top">الرئيسية</a>
+        <a href="#products">قطع الكمبيوتر</a>
+        <a href="#accessories">الإكسسوارات</a>
+        <a href="#offers">العروض</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn hide-mobile" aria-label="بحث">⌕</button>
+        <button class="icon-btn hide-mobile" aria-label="حساب">♙</button>
+        <button class="icon-btn" id="cartButton" aria-label="السلة">🛒<span class="cart-count" id="cartCount">0</span></button>
+        <button class="icon-btn menu-btn" aria-label="القائمة">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="eyebrow">كل ما يحتاجه جهازك في مكان واحد</div>
+        <h1>ابنِ جهاز أحلامك<br><span class="grad">بأداءٍ بلا حدود</span></h1>
+        <p>أحدث قطع الكمبيوتر وإكسسوارات الألعاب من أفضل العلامات التجارية، بضمان أصلي وشحن سريع إلى جميع أنحاء المملكة.</p>
+        <div class="hero-buttons">
+          <a href="#products" class="primary">تسوّق الآن <span>←</span></a>
+          <a href="#offers" class="secondary">اكتشف العروض</a>
+        </div>
+        <div class="hero-spec">
+          <div><b>+1,500</b><span>منتج تقني</span></div>
+          <div><b>+20,000</b><span>عميل سعيد</span></div>
+          <div><b>24/7</b><span>دعم فني</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="trust">
+      <div class="container">
+        <div class="trust-item"><span class="trust-icon">⚡</span><div><b>شحن سريع</b><small>خلال 1 - 3 أيام عمل</small></div></div>
+        <div class="trust-item"><span class="trust-icon">✓</span><div><b>ضمان أصلي</b><small>منتجات موثوقة 100%</small></div></div>
+        <div class="trust-item"><span class="trust-icon">↻</span><div><b>استبدال واسترجاع</b><small>خلال 14 يومًا</small></div></div>
+        <div class="trust-item"><span class="trust-icon">▣</span><div><b>دفع آمن</b><small>طرق دفع متعددة</small></div></div>
+      </div>
+    </div>
+
+    <section id="accessories">
+      <div class="container">
+        <div class="section-head">
+          <div><span class="section-kicker">تسوّق حسب الفئة</span><h2 class="section-title">كل ما تحتاجه لبناء جهازك</h2></div>
+          <a href="#products" class="all-link">عرض الكل ←</a>
+        </div>
+        <div class="categories">
+          <a href="#products" class="category"><img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=600&q=80" alt="قطع الكمبيوتر"><h3>قطع الكمبيوتر</h3><span>كروت شاشة، معالجات والمزيد</span></a>
+          <a href="#products" class="category"><img src="https://images.unsplash.com/photo-1587202372583-49330a15584d?auto=format&fit=crop&w=600&q=80" alt="معدات الألعاب"><h3>معدات الألعاب</h3><span>شاشات، كيبورد وماوس</span></a>
+          <a href="#products" class="category"><img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=600&q=80" alt="الإكسسوارات"><h3>الإكسسوارات</h3><span>سماعات، مايكات وإضاءة</span></a>
+          <a href="#products" class="category"><img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=600&q=80" alt="التخزين"><h3>التخزين والذاكرة</h3><span>SSD، RAM وحلول النسخ</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="products-area" id="products">
+      <div class="container">
+        <div class="section-head">
+          <div><span class="section-kicker">الأكثر طلبًا</span><h2 class="section-title">منتجات مختارة لك</h2></div>
+          <a href="#products" class="all-link">عرض كل المنتجات ←</a>
+        </div>
+        <div class="toolbar">
+          <div class="filter-tabs">
+            <button class="filter active" data-filter="all">الكل</button>
+            <button class="filter" data-filter="parts">قطع الكمبيوتر</button>
+            <button class="filter" data-filter="gaming">الألعاب</button>
+            <button class="filter" data-filter="accessory">إكسسوارات</button>
+          </div>
+          <select class="sort" id="sort">
+            <option value="featured">ترتيب: الأكثر شهرة</option>
+            <option value="low">السعر: من الأقل للأعلى</option>
+            <option value="high">السعر: من الأعلى للأقل</option>
+          </select>
+        </div>
+        <div class="products" id="productGrid"></div>
+      </div>
+    </section>
+
+    <section class="promo" id="offers">
+      <div class="container">
+        <div class="promo-box">
+          <div>
+            <span class="promo-chip">عرض محدود</span>
+            <h2>جهّز سيت أبك<br><span class="grad">بسعر أقل</span></h2>
+            <p>خصم حتى 25% على باقات الكيبورد والماوس والسماعات.</p>
+            <a href="#products" class="primary">تسوّق العرض ←</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="newsletter">
+      <div class="container">
+        <div><h2>ابقَ في قلب التقنية</h2><p>اشترك لتصلك أحدث المنتجات والعروض الحصرية أولاً.</p></div>
+        <form class="subscribe" id="subscribe"><input type="email" required placeholder="اكتب بريدك الإلكتروني"><button>اشترك الآن</button></form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="#top"><span class="brand-mark"></span><span>Your <em>Tech</em></span></a>
+          <p class="footer-about">وجهتك الأولى لأحدث قطع الكمبيوتر وإكسسوارات الألعاب. نؤمن أن التقنية الأفضل تجعل كل لحظة أقوى.</p>
+          <div class="socials"><a href="#">𝕏</a><a href="#">f</a><a href="#">◎</a><a href="#">▶</a></div>
+        </div>
+        <div class="footer-col"><h4>تسوّق</h4><a href="#products">قطع الكمبيوتر</a><a href="#products">أجهزة الألعاب</a><a href="#products">الإكسسوارات</a><a href="#offers">العروض</a></div>
+        <div class="footer-col"><h4>خدمة العملاء</h4><a href="#">تواصل معنا</a><a href="#">تتبع الطلب</a><a href="#">الشحن والاسترجاع</a><a href="#">الضمان</a></div>
+        <div class="footer-col"><h4>عن Your Tech</h4><a href="#">من نحن</a><a href="#">الوظائف</a><a href="#">المدونة</a><a href="#">الشروط والأحكام</a></div>
+      </div>
+      <div class="copyright"><span>© 2026 Your Tech. جميع الحقوق محفوظة.</span><span class="payments">VISA ◉ mada Pay</span></div>
+    </div>
+  </footer>
+
+  <div class="overlay" id="overlay"></div>
+
+  <aside class="cart-panel" id="cartPanel">
+    <div class="cart-header"><h3>سلة المشتريات <span id="cartTitleCount"></span></h3><button class="close" id="closeCart">×</button></div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer"><div class="total"><span>الإجمالي</span><span id="total">0 ر.س</span></div><a class="checkout" href="#" id="checkout">إتمام الطلب ←</a></div>
+  </aside>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const productFallback = label => `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`
+      <svg xmlns="http://www.w3.org/2000/svg" width="650" height="500" viewBox="0 0 650 500">
+        <rect width="650" height="500" fill="#edf0f2"/>
+        <rect x="74" y="64" width="502" height="372" rx="25" fill="#dce3e7"/>
+        <path d="M215 174h220v152H215z" fill="#23333b"/>
+        <path d="M250 205h150v90H250z" fill="#21e6d1" opacity=".75"/>
+        <circle cx="325" cy="250" r="30" fill="#8e67ff"/>
+        <text x="325" y="392" text-anchor="middle" font-family="Arial" font-size="25" font-weight="bold" fill="#13232b">${label}</text>
+        <text x="325" y="421" text-anchor="middle" font-family="Arial" font-size="16" fill="#52636d">YOUR TECH</text>
+      </svg>
+    `)}`;
+
+    const products = [
+      {id:1,name:'كرت شاشة MSI GeForce RTX 4070 SUPER Ventus 3X',type:'parts',label:'كروت شاشة',price:2899,rating:'★★★★★',badge:'الأكثر مبيعًا',img:'https://asset.msi.com/resize/image/global/product/product_17046847997f6caa465609bab60e0c4f9b36b8a649.png62405b38c58fe0f07fcef2367d8a9ba1/1024.png'},
+      {id:2,name:'معالج AMD Ryzen 7 7800X3D',type:'parts',label:'معالجات',price:1749,rating:'★★★★★',badge:'جديد',img:'https://www.amd.com/content/dam/amd/en/images/products/processors/ryzen/2505503-ryzen-7-7800x3d-front.jpg'},
+      {id:3,name:'كيبورد ميكانيكي Logitech G PRO X',type:'gaming',label:'كيبوردات',price:549,old:649,rating:'★★★★★',badge:'خصم 15%',sale:true,img:'https://resource.logitechg.com/w_692,c_limit,q_auto,f_auto,dpr_auto/content/dam/gaming/en/products/pro-x-keyboard/pro-x-keyboard-gallery-1.png'},
+      {id:4,name:'سماعة ألعاب HyperX Cloud III Wireless',type:'accessory',label:'سماعات',price:499,rating:'★★★★☆',img:'https://hyperx.com/cdn/shop/files/hyperx_cloud_iii_wireless_red_77z46aa_main_1.jpg?v=1775587372'},
+      {id:5,name:'ذاكرة Corsair Vengeance RGB 32GB DDR5',type:'parts',label:'الذاكرة',price:629,rating:'★★★★★',badge:'جديد',img:'https://down-ph.img.susercontent.com/file/th-11134201-23020-up5tti4uz2nv13'},
+      {id:6,name:'ماوس Razer DeathAdder V3 Pro',type:'gaming',label:'ماوسات الألعاب',price:549,old:599,rating:'★★★★★',badge:'خصم',sale:true,img:'https://tse3.mm.bing.net/th/id/OIP.OIT1H4FGGH_phLASoC2tUAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3'},
+      {id:7,name:'قرص Samsung 990 PRO SSD 2TB',type:'parts',label:'وحدات التخزين',price:799,rating:'★★★★★',img:'https://tse3.mm.bing.net/th/id/OIP.zE9lWO1KcYxwjWf8cwkqBQHaFj?r=0&rs=1&pid=ImgDetMain&o=7&rm=3'},
+      {id:8,name:'ذراع حامل شاشة احترافي مزدوج',type:'accessory',label:'إكسسوارات المكتب',price:339,rating:'★★★★☆',img:'https://m.media-amazon.com/images/I/51cxYlBulXL._AC_SL1500_.jpg'}
+    ];
+
+    let selectedFilter = 'all';
+    let cart = [];
+
+    const grid = document.getElementById('productGrid');
+    const money = n => new Intl.NumberFormat('ar-SA').format(n) + ' ر.س';
+
+    function renderProducts() {
+      let data = products.filter(p => selectedFilter === 'all' || p.type === selectedFilter);
+      const sort = document.getElementById('sort').value;
+
+      if(sort === 'low') data.sort((a,b) => a.price - b.price);
+      if(sort === 'high') data.sort((a,b) => b.price - a.price);
+
+      grid.innerHTML = data.map(p => `
+        <article class="product">
+          <div class="product-image">
+            ${p.badge ? `<span class="badge ${p.sale ? 'sale' : ''}">${p.badge}</span>` : ''}
+            <button class="wish" aria-label="المفضلة" onclick="this.classList.toggle('liked');this.textContent=this.classList.contains('liked')?'♥':'♡'">♡</button>
+            <img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.onerror=null;this.src=productFallback('${p.label}')">
+          </div>
+          <div class="product-info">
+            <div class="product-type">${p.label}</div>
+            <h3>${p.name}</h3>
+            <div class="rating">${p.rating}<span>(4.9)</span></div>
+            <div class="product-bottom">
+              <div>
+                ${p.old ? `<span class="old-price">${money(p.old)}</span>` : ''}
+                <span class="price">${money(p.price)}</span>
+              </div>
+              <button class="add" onclick="addToCart(${p.id})" aria-label="أضف للسلة">+</button>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function addToCart(id) {
+      const found = cart.find(i => i.id === id);
+      if(found) found.qty++;
+      else cart.push({...products.find(p => p.id === id), qty:1});
+
+      renderCart();
+      showToast('تمت إضافة المنتج إلى السلة ✓');
+    }
+
+    function renderCart() {
+      const count = cart.reduce((sum,item) => sum + item.qty, 0);
+
+      document.getElementById('cartCount').textContent = count;
+      document.getElementById('cartTitleCount').textContent = count ? `(${count})` : '';
+      document.getElementById('total').textContent = money(cart.reduce((sum,item) => sum + item.price * item.qty, 0));
+
+      const items = document.getElementById('cartItems');
+
+      items.innerHTML = cart.length ? cart.map(i => `
+        <div class="cart-item">
+          <img src="${i.img}" alt="${i.name}" onerror="this.onerror=null;this.src=productFallback('${i.label}')">
+          <div>
+            <h4>${i.name}</h4>
+            <span class="price">${money(i.price)}</span>
+          </div>
+          <div class="qty">
+            <button onclick="changeQty(${i.id},1)">+</button>
+            <span>${i.qty}</span>
+            <button onclick="changeQty(${i.id},-1)">−</button>
+          </div>
+        </div>
+      `).join('') : '<div class="empty">سلتك فارغة حاليًا<br>ابدأ التسوّق واكتشف أحدث التقنيات.</div>';
+    }
+
+    function changeQty(id, delta) {
+      const item = cart.find(i => i.id === id);
+      item.qty += delta;
+      if(item.qty < 1) cart = cart.filter(i => i.id !== id);
+      renderCart();
+    }
+
+    function showToast(message) {
+      const el = document.getElementById('toast');
+      el.textContent = message;
+      el.classList.add('show');
+      setTimeout(() => el.classList.remove('show'), 2400);
+    }
+
+    document.querySelectorAll('.filter').forEach(btn => btn.addEventListener('click', () => {
+      document.querySelector('.filter.active').classList.remove('active');
+      btn.classList.add('active');
+      selectedFilter = btn.dataset.filter;
+      renderProducts();
+    }));
+
+    document.getElementById('sort').addEventListener('change', renderProducts);
+
+    const panel = document.getElementById('cartPanel');
+    const overlay = document.getElementById('overlay');
+
+    function openCart() {
+      panel.classList.add('open');
+      overlay.classList.add('show');
+    }
+
+    function closeCart() {
+      panel.classList.remove('open');
+      overlay.classList.remove('show');
+    }
+
+    document.getElementById('cartButton').onclick = openCart;
+    document.getElementById('closeCart').onclick = closeCart;
+    overlay.onclick = closeCart;
+
+    document.getElementById('subscribe').addEventListener('submit', e => {
+      e.preventDefault();
+      e.target.reset();
+      showToast('شكرًا! تم تسجيل بريدك بنجاح ✓');
+    });
+
+    document.getElementById('checkout').addEventListener('click', e => {
+      e.preventDefault();
+      showToast(cart.length ? 'سيتم توجيهك لإتمام الطلب قريبًا.' : 'أضف منتجات إلى السلة أولاً.');
+    });
+
+    renderProducts();
+    renderCart();
+  </script>
+</body>
+</html>
