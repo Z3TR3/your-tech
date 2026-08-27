@@ -905,7 +905,22 @@
     .toast.show {
       transform: translate(50%, 0)
     }
+.payment-methods {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  direction: ltr;
+}
 
+.payment-methods img {
+  width: 60px;
+  height: auto;
+  max-height: 32px;
+  object-fit: contain;
+  background: white;
+  padding: 4px 7px;
+  border-radius: 5px;
+}
     @media(max-width:900px) {
       .nav-links {
         display: none
@@ -1241,8 +1256,18 @@
             والأحكام</a>
         </div>
       </div>
-      <div class="copyright"><span>© 2026 Your Tech. جميع الحقوق محفوظة.</span><span class="payments">VISA ◉ mada
-          Pay</span></div>
+      <div class="copyright">
+  <span>© 2026 Your Tech. جميع الحقوق محفوظة.</span>
+  <div class="payment-methods">
+    <img
+      src="https://eg.visamiddleeast.com/content/dam/VCOM/global/about-visa/images/visa-brandmark-blue-1960x622.png"
+      alt="Visa">
+
+    <img
+      src="https://mostaql.hsoubcdn.com/uploads/thumbnails/797475/648ef448c7c9d/%D9%85%D8%AF%D9%89.png"
+      alt="مدى">
+  </div>
+</div>
     </div>
   </footer>
 
