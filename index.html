@@ -12,6 +12,8 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Changa:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap"
     rel="stylesheet">
+    <script src="https://kit.fontawesome.com/be5109ad76.js" crossorigin="anonymous"></script>
+
   <style>
     :root {
       --bg: #08090c;
@@ -1229,7 +1231,6 @@ html[data-theme="light"] .hero .primary, html[data-theme="light"] .promo .primar
   .print-summary table { width: 100%; border-collapse: collapse; }
   .print-summary td, .print-summary th { border: 1px solid #aaa; padding: 10px; text-align: start; }
 }
-
   </style>
 </head>
 
@@ -1255,6 +1256,16 @@ html[data-theme="light"] .hero .primary, html[data-theme="light"] .promo .primar
         <button class="icon-btn" id="favoritesButton" aria-label="عرض المفضلة" aria-pressed="false">♡<span class="cart-count" id="favoriteCount">0</span></button>
         <button class="icon-btn" id="cartButton" aria-label="السلة">🛒<span class="cart-count"
             id="cartCount">0</span></button>
+            <button
+  type="button"
+  class="icon-btn"
+  id="languageButton"
+  aria-label="ترجمة الموقع إلى الإنجليزية"
+  title="English"
+  style="font-size: 14px; font-weight: 700;"
+>
+  EN
+</button>
         <button class="icon-btn menu-btn" id="menuButton" aria-label="القائمة" aria-controls="mainNav" aria-expanded="false">☰</button>
       </div>
     </div>
@@ -1400,7 +1411,7 @@ html[data-theme="light"] .hero .primary, html[data-theme="light"] .promo .primar
           <a class="brand" href="#top"><span class="brand-mark"></span><span>Your <em>Tech</em></span></a>
           <p class="footer-about">وجهتك الأولى لأحدث قطع الكمبيوتر وإكسسوارات الألعاب. نؤمن أن التقنية الأفضل تجعل كل
             لحظة أقوى.</p>
-          <div class="socials"><a href="#">𝕏</a><a href="#">f</a><a href="#">◎</a><a href="#">▶</a></div>
+          <div class="socials"><a href="#"><i class="fa-brands fa-x-twitter"></i></a><a href="#"><i class="fa-brands fa-facebook"></i></a><a href="#"><i class="fa-brands fa-instagram"></i></a><a href="#"><i class="fa-brands fa-youtube"></i></a></div>
         </div>
         <div class="footer-col">
           <h4>تسوّق</h4><a href="#products">قطع الكمبيوتر</a><a href="#products">أجهزة الألعاب</a><a
@@ -1462,7 +1473,6 @@ html[data-theme="light"] .hero .primary, html[data-theme="light"] .promo .primar
       { id: 7, name: 'قرص Samsung 990 PRO SSD 2TB', type: 'parts', label: 'وحدات التخزين', price: 799, rating: '★★★★★', img: 'https://tse3.mm.bing.net/th/id/OIP.zE9lWO1KcYxwjWf8cwkqBQHaFj?r=0&rs=1&pid=ImgDetMain&o=7&rm=3' },
       { id: 8, name: 'ذراع حامل شاشة احترافي مزدوج', type: 'accessory', label: 'إكسسوارات المكتب', price: 339, rating: '★★★★☆', img: 'https://m.media-amazon.com/images/I/51cxYlBulXL._AC_SL1500_.jpg' }
     ];
-
 // 11, 36, 50: normalize search, validate stored state, and escape all dynamic markup.
 const $ = id => document.getElementById(id);
 const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -1815,8 +1825,27 @@ $('brandFilter').innerHTML='<option value="all">كل العلامات</option>'+
 applyPreferences();updateCategoryButtons();renderProducts();renderCart();renderRecent();updateScroll();
 try {const id=Number(new URL(location.href).searchParams.get('product'));if(byId(id))openDetails(id);}catch{}
 if(storageFailed)showToast('الحفظ المحلي غير متاح؛ يمكنك استخدام المتجر خلال هذه الجلسة.');
-
   </script>
+  <script>
+  document.getElementById("languageButton").addEventListener("click", () => {
+    const isLocal =
+      location.protocol === "file:" ||
+      ["localhost", "127.0.0.1", "[::1]"].includes(location.hostname);
+
+    if (isLocal) {
+      alert("الترجمة بهذه الطريقة تحتاج نشر الموقع على الإنترنت أولًا.");
+      return;
+    }
+
+    const translateUrl = new URL("https://translate.google.com/translate");
+
+    translateUrl.searchParams.set("sl", "ar");
+    translateUrl.searchParams.set("tl", "en");
+    translateUrl.searchParams.set("u", location.href);
+
+    location.assign(translateUrl.href);
+  });
+</script>
 </body>
 
 </html>
