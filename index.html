@@ -1910,6 +1910,8 @@ if(storageFailed)showToast('الحفظ المحلي غير متاح؛ يمكنك
     location.assign(translateUrl.href);
   });
 </script>
+<script src="./market-config.js"></script>
+<script src="./market-cloud.js"></script>
 <script>
 (() => {
   'use strict';
@@ -1928,10 +1930,12 @@ if(storageFailed)showToast('الحفظ المحلي غير متاح؛ يمكنك
     {id:'sample-screen',title:'شاشة ألعاب 27 بوصة · 165Hz',category:'screen',condition:conditions[0],price:650,city:'جدة',seller:'مثال لإعلان',description:'مثال توضيحي لشاشة ألعاب. أضف صور قطعتك ومواصفاتها عند إنشاء الإعلان.',images:[],createdAt:0,status:'active',sample:true},
     {id:'sample-keyboard',title:'كيبورد ميكانيكي للألعاب',category:'gaming',condition:conditions[2],price:220,city:'الدمام',seller:'مثال لإعلان',description:'مثال توضيحي لملحق ألعاب مستعمل.',images:[],createdAt:0,status:'active',sample:true}
   ];
-  const own=l=>Object.prototype.hasOwnProperty.call(ownership,l.id);
+  const cloud=window.YourTechCloud;
+  const own=l=>cloud?.configured?Boolean(cloud.userId&&l.ownerId===cloud.userId):Object.prototype.hasOwnProperty.call(ownership,l.id);
   const find=id=>records.find(l=>l.id===id)||samples.find(l=>l.id===id);
   const placeholder=l=>`<div class="market-placeholder">${esc(l.category==='gpu'?'GPU':l.category==='screen'?'165 Hz':'YOUR TECH')}<span>${esc(categories[l.category])}</span></div>`;
   async function api(path='',options={}) {
+    if(cloud?.configured)return cloud.api(path,options);
     const response=await fetch('/api/marketplace'+path,{...options,headers:{'Content-Type':'application/json',...options.headers}});
     const data=await response.json(); if(!response.ok)throw new Error(data.error||'تعذّر تنفيذ العملية. حاول مرة أخرى.'); return data;
   }
@@ -2023,6 +2027,12 @@ if(storageFailed)showToast('الحفظ المحلي غير متاح؛ يمكنك
   ['marketCategory','marketSort','marketMine'].forEach(id=>$(id).addEventListener('change',render));
   $('marketReset').addEventListener('click',()=>{$('marketSearch').value='';$('marketCity').value='';$('marketCategory').value='all';$('marketSort').value='new';$('marketMine').checked=false;render();});
   async function init(){
+    if(cloud?.configured){
+      try{const data=await api();records=data.listings.filter(valid);shared=true;ready=true;$('marketMode').textContent='السوق متصل · الإعلانات متاحة لزوار الموقع.';}
+      catch(error){records=[];ready=false;$('marketMode').textContent=error.message;$('marketAdd').disabled=true;}
+      render();return;
+    }
+    if(location.hostname.endsWith('.github.io')){records=[];ready=false;$('marketAdd').disabled=true;$('marketMode').textContent='السوق قيد التجهيز. إضافة الإعلانات ستتاح قريبًا.';render();return;}
     if(location.protocol!=='file:')try{const data=await api('',{signal:AbortSignal.timeout(5000)});if(!Array.isArray(data.listings))throw new Error();records=data.listings.filter(valid);shared=true;}catch{}
     ready=true;$('marketMode').textContent=shared?'السوق متصل · الإعلانات متاحة لزوار الموقع.':'معاينة محلية · إعلاناتك محفوظة في هذا المتصفح فقط. ظهورها لجميع الزوار يحتاج تشغيل خادم السوق المرفق.';render();
   }
@@ -2033,3 +2043,4 @@ if(storageFailed)showToast('الحفظ المحلي غير متاح؛ يمكنك
 </body>
 
 </html>
+
