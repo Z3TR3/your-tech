@@ -1231,6 +1231,53 @@ html[data-theme="light"] .hero .primary, html[data-theme="light"] .promo .primar
   .print-summary table { width: 100%; border-collapse: collapse; }
   .print-summary td, .print-summary th { border: 1px solid #aaa; padding: 10px; text-align: start; }
 }
+/* Your Tech community electronics market */
+.market { background: radial-gradient(ellipse at 90% 0, #8e67ff18, transparent 45%), var(--bg); border-block: 1px solid #303540; }
+.market-heading { display:flex; align-items:center; justify-content:space-between; gap:24px; margin-bottom:24px; }
+.market-heading p { color:var(--muted); line-height:1.8; margin:8px 0 0; }
+.market-heading .primary { white-space:nowrap; }
+.market-label { display:inline-flex; gap:8px; align-items:center; color:var(--cyan); font-weight:700; font-size:13px; }
+.market-label::before { content:'↔'; display:grid; place-items:center; width:28px; height:28px; border:1px solid var(--cyan); border-radius:8px; }
+.market-heading h2 { font:700 clamp(25px,4vw,38px) Changa,sans-serif; margin:8px 0; }
+.market-tools { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:12px; padding:18px; border:1px solid #404753; background:var(--surface); border-radius:14px; }
+.market-tools input,.market-tools select { width:100%; padding:12px; min-height:46px; background:var(--surface2); color:var(--text); border:1px solid #59616d; border-radius:8px; }
+.market-summary { display:flex; justify-content:space-between; gap:12px; align-items:center; flex-wrap:wrap; padding:18px 0; color:var(--muted); font-size:14px; }
+.market-summary p { margin:0; }
+.market-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; }
+.market-card { border:1px solid #303540; border-radius:16px; overflow:hidden; background:var(--surface); transition:transform .2s,border-color .2s; min-width:0; }
+.market-card:hover { transform:translateY(-4px); border-color:var(--purple); }
+.market-picture { height:210px; background:var(--surface2); position:relative; display:grid; place-items:center; overflow:hidden; }
+.market-picture img { width:100%; height:100%; object-fit:contain; }
+.market-placeholder { color:var(--cyan); text-align:center; font:700 24px Changa,sans-serif; padding:25px; background:radial-gradient(circle,#21e6d120,transparent 70%); width:100%; }
+.market-placeholder span { display:block; font:14px Tajawal,sans-serif; color:var(--muted); margin-top:8px; }
+.market-chip { position:absolute; top:12px; right:12px; background:var(--surface); color:var(--text); border:1px solid #59616d; border-radius:20px; padding:6px 12px; font-size:12px; }
+.market-sold { color:#ffbb76; }
+.market-content { padding:20px; }
+.market-meta { display:flex; justify-content:space-between; gap:8px; color:var(--muted); font-size:13px; }
+.market-card h3 { margin:12px 0; font-size:18px; line-height:1.6; overflow-wrap:anywhere; }
+.market-price { color:var(--cyan); font:700 23px Changa,sans-serif; margin:8px 0 16px; }
+.market-foot { border-top:1px solid #404753; padding-top:14px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.market-foot span { font-size:13px; color:var(--muted); overflow-wrap:anywhere; }
+.market-foot button { background:var(--surface2); color:var(--text); border:1px solid #59616d; border-radius:8px; padding:10px 14px; }
+.market-note { color:var(--muted); font-size:13px; line-height:1.8; margin:22px 0 0; }
+.market-form { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+.market-form .wide { grid-column:1/-1; }
+.market-form textarea { font:inherit; resize:vertical; min-height:110px; padding:12px; color:var(--text); background:var(--surface2); border:1px solid #68717e; border-radius:8px; }
+.market-upload { padding:20px; border:1px dashed var(--purple); border-radius:12px; background:var(--surface2); }
+.market-upload small { color:var(--muted); line-height:1.8; }
+.market-previews { display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
+.market-previews img { width:90px; height:75px; object-fit:cover; border-radius:8px; }
+.market-gallery { display:grid; gap:10px; }
+.market-gallery img { width:100%; max-height:320px; object-fit:contain; border-radius:10px; background:var(--surface2); }
+.market-description { white-space:pre-wrap; overflow-wrap:anywhere; }
+.market-contact { text-decoration:none; justify-content:center; }
+.market-empty { grid-column:1/-1; padding:50px 20px; text-align:center; border:1px dashed #59616d; border-radius:16px; color:var(--muted); }
+.market-empty h3 { color:var(--text); }
+.market-mode { padding:12px 16px; border:1px solid #404753; border-radius:10px; margin-top:16px; color:var(--muted); line-height:1.7; font-size:13px; }
+@media(min-width:901px) and (max-width:1100px) { .nav { gap:12px; } .nav-links { gap:12px; } .nav-links a { font-size:13px; } }
+@media(max-width:900px) { .market-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .market-tools { grid-template-columns:1fr 1fr; } }
+@media(max-width:560px) { .market-heading { align-items:flex-start; flex-direction:column; } .market-heading .primary { width:100%; justify-content:center; } .market-grid,.market-form { grid-template-columns:1fr; } .market-tools { padding:12px; gap:10px; } .market-tools .market-search-field { grid-column:1/-1; } .market-picture { height:220px; } .market-content { padding:16px; } }
+
   </style>
 </head>
 
@@ -1249,6 +1296,7 @@ html[data-theme="light"] .hero .primary, html[data-theme="light"] .promo .primar
         <a href="#products">قطع الكمبيوتر</a>
         <a href="#accessories">الإكسسوارات</a>
         <a href="#offers">العروض</a>
+        <a href="#marketplace">سوق الإلكترونيات</a>
       </nav>
       <div class="nav-actions">
         <button class="icon-btn hide-mobile" id="searchButton" aria-label="بحث في المنتجات" title="بحث (/)">⌕</button>
@@ -1392,6 +1440,22 @@ html[data-theme="light"] .hero .primary, html[data-theme="light"] .promo .primar
       </div>
     </section>
 
+    <section class="market" id="marketplace" aria-labelledby="marketTitle">
+      <div class="container">
+        <div class="market-heading"><div><span class="market-label">من مجتمع التقنية، لمجتمع التقنية</span><h2 id="marketTitle">سوق <span class="grad">الإلكترونيات</span></h2><p>قطعتك القديمة، بداية جديدة لشخص آخر.<br>اعرض أجهزتك وقطعك المستعملة وتواصل مباشرة مع المهتمين.</p></div><button class="primary" id="marketAdd">＋ أضف إعلانك</button></div>
+        <div class="market-tools" aria-label="البحث في سوق الإلكترونيات">
+          <label class="field market-search-field"><span>ابحث عن قطعة</span><input id="marketSearch" type="search" maxlength="120" placeholder="كرت شاشة، لابتوب، شاشة…"></label>
+          <label class="field"><span>الفئة</span><select id="marketCategory"><option value="all">كل الإلكترونيات</option value="gpu">كروت الشاشة</option><option value="parts">قطع الكمبيوتر</option><option value="laptop">لابتوبات وأجهزة</option><option value="screen">شاشات</option><option value="gaming">ملحقات الألعاب</option><option value="mobile">جوالات وأجهزة لوحية</option><option value="other">إلكترونيات أخرى</option></select></label>
+          <label class="field"><span>المدينة</span><input id="marketCity" type="search" maxlength="60" placeholder="كل المدن"></label>
+          <label class="field"><span>الترتيب</span><select id="marketSort"><option value="new">الأحدث أولًا</option><option value="low">الأقل سعرًا</option><option value="high">الأعلى سعرًا</option></select></label>
+        </div>
+        <div class="market-mode" id="marketMode" role="status">جارٍ تجهيز السوق…</div>
+        <div class="market-summary"><p id="marketCount" role="status" aria-live="polite"></p><label class="check-label"><input type="checkbox" id="marketMine">إعلاناتي فقط</label><button class="text-btn" id="marketReset">مسح الفلاتر</button></div>
+        <div class="market-grid" id="marketGrid"></div>
+        <p class="market-note">الإعلانات من البائعين مباشرة. اتفق مع البائع على الفحص والتسليم؛ شراء المستعمل يتم بالتواصل معه.</p>
+      </div>
+    </section>
+
     <section class="recent-section" id="recentSection" hidden><div class="container"><h2 class="section-title">شاهدتها مؤخرًا</h2><div class="recent-items" id="recentItems"></div></div></section>
     <section class="newsletter">
       <div class="container">
@@ -1415,7 +1479,7 @@ html[data-theme="light"] .hero .primary, html[data-theme="light"] .promo .primar
         </div>
         <div class="footer-col">
           <h4>تسوّق</h4><a href="#products">قطع الكمبيوتر</a><a href="#products">أجهزة الألعاب</a><a
-            href="#products">الإكسسوارات</a><a href="#offers">العروض</a>
+            href="#products">الإكسسوارات</a><a href="#offers">العروض</a><a href="#marketplace">سوق الإلكترونيات</a>
         </div>
         <div class="footer-col">
           <h4>خدمة العملاء</h4><a href="#">تواصل معنا</a><a href="#">تتبع الطلب</a><a href="#">الشحن والاسترجاع</a><a
@@ -1845,6 +1909,126 @@ if(storageFailed)showToast('الحفظ المحلي غير متاح؛ يمكنك
 
     location.assign(translateUrl.href);
   });
+</script>
+<script>
+(() => {
+  'use strict';
+  const categories = {gpu:'كروت الشاشة',parts:'قطع الكمبيوتر',laptop:'لابتوبات وأجهزة',screen:'شاشات',gaming:'ملحقات الألعاب',mobile:'جوالات وأجهزة لوحية',other:'إلكترونيات أخرى'};
+  const conditions = ['كالجديد','مستعمل بحالة ممتازة','مستعمل بحالة جيدة','يحتاج إصلاح'];
+  const key='yourtech.market.v1';
+  const read=(suffix,fallback)=>{try{return JSON.parse(localStorage.getItem(key+suffix))??fallback;}catch{return fallback;}};
+  const write=(suffix,value)=>{try{localStorage.setItem(key+suffix,JSON.stringify(value));return true;}catch{return false;}};
+  let ownership=read('.owners',{}); if(!ownership || typeof ownership!=='object' || Array.isArray(ownership)) ownership={};
+  const safeImage=s=>typeof s==='string' && s.length<650000 && /^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(s);
+  const valid=l=>l && typeof l.id==='string' && /^[\w-]{1,100}$/.test(l.id) && typeof l.title==='string' && l.title.length<=100 && categories[l.category] && conditions.includes(l.condition) && typeof l.price==='number' && l.price>0 && l.price<=1000000 && typeof l.city==='string' && typeof l.seller==='string' && typeof l.description==='string' && /^9665\d{8}$/.test(l.phone) && Array.isArray(l.images) && l.images.length<=3 && l.images.every(safeImage) && Number.isFinite(l.createdAt) && ['active','sold'].includes(l.status);
+  let records=read('.listings',[]); records=Array.isArray(records)?records.filter(valid).slice(0,100):[];
+  let shared=false,ready=false,selectedImages=[],uploadBusy=false;
+  const samples=[
+    {id:'sample-gpu',title:'كرت شاشة RTX 4070 SUPER',category:'gpu',condition:conditions[1],price:1850,city:'الرياض',seller:'مثال لإعلان',description:'مثال توضيحي لكرت شاشة مستعمل، مع تفاصيل الاستخدام وحالة القطعة.',images:[],createdAt:0,status:'active',sample:true},
+    {id:'sample-screen',title:'شاشة ألعاب 27 بوصة · 165Hz',category:'screen',condition:conditions[0],price:650,city:'جدة',seller:'مثال لإعلان',description:'مثال توضيحي لشاشة ألعاب. أضف صور قطعتك ومواصفاتها عند إنشاء الإعلان.',images:[],createdAt:0,status:'active',sample:true},
+    {id:'sample-keyboard',title:'كيبورد ميكانيكي للألعاب',category:'gaming',condition:conditions[2],price:220,city:'الدمام',seller:'مثال لإعلان',description:'مثال توضيحي لملحق ألعاب مستعمل.',images:[],createdAt:0,status:'active',sample:true}
+  ];
+  const own=l=>Object.prototype.hasOwnProperty.call(ownership,l.id);
+  const find=id=>records.find(l=>l.id===id)||samples.find(l=>l.id===id);
+  const placeholder=l=>`<div class="market-placeholder">${esc(l.category==='gpu'?'GPU':l.category==='screen'?'165 Hz':'YOUR TECH')}<span>${esc(categories[l.category])}</span></div>`;
+  async function api(path='',options={}) {
+    const response=await fetch('/api/marketplace'+path,{...options,headers:{'Content-Type':'application/json',...options.headers}});
+    const data=await response.json(); if(!response.ok)throw new Error(data.error||'تعذّر تنفيذ العملية. حاول مرة أخرى.'); return data;
+  }
+  function render() {
+    const query=normalize($('marketSearch').value),city=normalize($('marketCity').value),category=$('marketCategory').value,mine=$('marketMine').checked;
+    let list=(records.length?records:(mine?[]:samples)).filter(l=>(!mine||own(l)) && (category==='all'||l.category===category) && (!city||normalize(l.city).includes(city)) && (!query||normalize(l.title+' '+l.description+' '+categories[l.category]).includes(query)));
+    list.sort((a,b)=>$('marketSort').value==='low'?a.price-b.price:$('marketSort').value==='high'?b.price-a.price:b.createdAt-a.createdAt);
+    $('marketCount').textContent=records.length?`${list.length} إعلان${mine?' من إعلاناتك':''}`:'لا توجد إعلانات بعد · البطاقات التالية أمثلة توضيحية';
+    $('marketGrid').innerHTML=list.length?list.map(l=>`<article class="market-card"><div class="market-picture">${l.images.length?`<img loading="lazy" src="${esc(l.images[0])}" alt="${esc(l.title)}">`:placeholder(l)}<span class="market-chip ${l.status==='sold'?'market-sold':''}">${l.sample?'مثال توضيحي':l.status==='sold'?'تم البيع':esc(l.condition)}</span></div><div class="market-content"><div class="market-meta"><span>${esc(categories[l.category])}</span><span>⌖ ${esc(l.city)}</span></div><h3>${esc(l.title)}</h3><p class="market-price">${money(l.price)}</p><div class="market-foot"><span>${esc(l.seller)}${own(l)?' · إعلانك':''}</span><button data-market="details" data-listing="${esc(l.id)}">التفاصيل ←</button></div></div></article>`).join(''):'<div class="market-empty"><h3>ما لقينا إعلانات هنا</h3><p>غيّر البحث أو أضف أول إعلان لقطعتك.</p><button class="primary" data-market="add">＋ أضف إعلانك</button></div>';
+  }
+  function details(id) {
+    const l=find(id); if(!l)return;
+    const gallery=l.images.length?l.images.map(s=>`<img src="${esc(s)}" alt="${esc(l.title)}">`).join(''):placeholder(l);
+    openDialog(l.title,`<div class="details-grid"><div class="market-gallery">${gallery}</div><div><span class="product-type">${esc(categories[l.category])} · ${esc(l.condition)}</span><p class="market-price">${money(l.price)}</p><p>⌖ ${esc(l.city)} · البائع: ${esc(l.seller)}</p><p class="market-description">${esc(l.description)}</p>${l.sample?'<p class="status-note">هذا مثال للتصميم فقط، وليس إعلانًا حقيقيًا للبيع.</p>':l.status==='sold'?'<p class="status-note">تم بيع هذه القطعة.</p>':`<a class="primary market-contact" target="_blank" rel="noopener noreferrer" href="https://wa.me/${l.phone}?text=${encodeURIComponent('السلام عليكم، مهتم بإعلانك على Your Tech: '+l.title)}">تواصل مع البائع عبر واتساب ↗</a>`}${own(l)?`<div class="detail-buttons"><button class="text-btn" data-market="status" data-listing="${esc(l.id)}">${l.status==='sold'?'إعادة عرضه للبيع':'تحديده كمباع'}</button><button class="text-btn" data-market="delete" data-listing="${esc(l.id)}">حذف إعلاني</button></div>`:''}</div></div>`);
+  }
+  function addForm() {
+    if(!ready){showToast('انتظر حتى يجهز السوق');return;}
+    if(records.length>=100 && !shared){showToast('وصلت إلى حد الحفظ المحلي. احذف إعلانًا قبل إضافة آخر.');return;}
+    selectedImages=[]; uploadBusy=false;
+    openDialog('أضف قطعتك للبيع',`<form id="marketForm" class="market-form">
+      <label class="field wide">عنوان الإعلان<input name="title" required maxlength="100" minlength="5" placeholder="مثال: RTX 4070 SUPER مستعمل بحالة ممتازة"></label>
+      <label class="field">الفئة<select name="category">${Object.entries(categories).map(([k,v])=>`<option value="${k}">${v}</option>`).join('')}</select></label>
+      <label class="field">حالة القطعة<select name="condition">${conditions.map(v=>`<option>${v}</option>`).join('')}</select></label>
+      <label class="field">السعر (ر.س)<input name="price" required type="number" min="1" max="1000000" step="0.01" placeholder="1850"></label>
+      <label class="field">المدينة<input name="city" required maxlength="60" placeholder="الرياض"></label>
+      <label class="field">اسم البائع<input name="seller" required maxlength="60" autocomplete="name"></label>
+      <label class="field">رقم واتساب سعودي<input name="phone" required inputmode="tel" type="tel" dir="ltr" maxlength="16" placeholder="05XXXXXXXX" aria-describedby="marketPhoneNote"><small id="marketPhoneNote">يُتاح الرقم للمهتمين من زر التواصل.</small></label>
+      <label class="field wide">وصف القطعة<textarea name="description" required minlength="10" maxlength="2000" placeholder="المواصفات، مدة الاستخدام، الملحقات وأي عيوب…"></textarea></label>
+      <label class="field wide market-upload">صور قطعتك<input id="marketImages" type="file" accept="image/jpeg,image/png,image/webp" multiple required><small>من 1 إلى 3 صور حقيقية، كل صورة حتى 8 ميجابايت.</small><div class="market-previews" id="marketPreviews"></div></label>
+      <p class="error-text wide" id="marketFormError" role="alert" hidden></p>
+      <div class="wide"><p class="market-note">${shared?'سيظهر الإعلان لزوار هذا الموقع. إدارة الإعلان متاحة من المتصفح الذي أنشأته فيه.':'هذه معاينة محلية؛ يُحفظ الإعلان في هذا المتصفح ولا يظهر للزوار الآخرين.'}</p><div class="detail-buttons"><button class="primary" id="marketSubmit">${shared?'نشر الإعلان':'حفظ الإعلان محليًا'}</button><button type="button" class="text-btn" data-action="close-dialog">إلغاء</button></div></div>
+    </form>`);
+    $('marketImages').addEventListener('change',loadImages);
+    $('marketForm').addEventListener('submit',submit);
+  }
+  function formError(message) { if($('marketFormError')) { $('marketFormError').textContent=message; $('marketFormError').hidden=!message; } }
+  async function resize(file) {
+    if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>8*1024*1024)throw new Error('اختر صور JPG أو PNG أو WebP بحجم لا يتجاوز 8 ميجابايت.');
+    const bitmap=await createImageBitmap(file); const scale=Math.min(1,1200/Math.max(bitmap.width,bitmap.height));
+    const canvas=document.createElement('canvas'); canvas.width=Math.max(1,Math.round(bitmap.width*scale));canvas.height=Math.max(1,Math.round(bitmap.height*scale));
+    const context=canvas.getContext('2d');context.fillStyle='#ffffff';context.fillRect(0,0,canvas.width,canvas.height);context.drawImage(bitmap,0,0,canvas.width,canvas.height);bitmap.close();
+    let result=canvas.toDataURL('image/jpeg',.78); if(!safeImage(result))result=canvas.toDataURL('image/jpeg',.5); if(!safeImage(result))throw new Error('الصورة كبيرة بعد ضغطها؛ اختر صورة أصغر.');return result;
+  }
+  async function loadImages(e) {
+    const input=e.target,form=input.form;selectedImages=[];formError('');$('marketPreviews').innerHTML='';
+    const files=[...input.files];if(files.length>3){formError('اختر 3 صور كحد أقصى.');input.value='';return;}
+    uploadBusy=true;$('marketSubmit').disabled=true;input.disabled=true;
+    try{const images=await Promise.all(files.map(resize));if(document.getElementById('marketForm')!==form)return;selectedImages=images;$('marketPreviews').innerHTML=images.map(s=>`<img src="${s}" alt="معاينة صورة القطعة">`).join('');}
+    catch(error){if(document.getElementById('marketForm')===form){formError(error.message);input.value='';}}
+    finally{if(document.getElementById('marketForm')===form){uploadBusy=false;$('marketSubmit').disabled=false;input.disabled=false;}}
+  }
+  async function submit(e) {
+    e.preventDefault();if(uploadBusy||!e.target.reportValidity())return;formError('');
+    const form=e.target,data=new FormData(form),field=k=>String(data.get(k)||'').trim();
+    let phone=field('phone').replace(/[\s()+-]/g,'').replace(/[٠-٩]/g,c=>String(c.charCodeAt(0)-1632));if(phone.startsWith('00966'))phone=phone.slice(2);if(/^05\d{8}$/.test(phone))phone='966'+phone.slice(1);
+    if(!/^9665\d{8}$/.test(phone)){formError('أدخل رقم واتساب سعوديًا صحيحًا، مثل 05XXXXXXXX.');return;}
+    if(!selectedImages.length){formError('أضف صورة واحدة على الأقل لقطعتك.');return;}
+    const l={title:field('title'),category:field('category'),condition:field('condition'),price:Number(field('price')),city:field('city'),seller:field('seller'),phone,description:field('description'),images:[...selectedImages]};
+    if(l.title.length<5||!l.city||!l.seller||l.description.length<10){formError('أكمل بيانات الإعلان بوصف واضح.');return;}
+    $('marketSubmit').disabled=true;
+    try {
+      let item,token;
+      if(shared){const result=await api('',{method:'POST',body:JSON.stringify(l)});item=result.listing;token=result.ownerToken;}
+      else {item={...l,id:crypto.randomUUID(),createdAt:Date.now(),status:'active'};token=crypto.randomUUID();const next=[item,...records];if(!write('.listings',next))throw new Error('مساحة الحفظ غير كافية. قلّل حجم الصور أو احذف إعلانًا قديمًا.');}
+      ownership[item.id]=token;const saved=write('.owners',ownership);records=[item,...records];render();closeDialog();$('marketplace').scrollIntoView({behavior:motionBehavior()});
+      showToast(!saved?'حُفظ الإعلان؛ تعذّر حفظ مفتاح إدارته، وتتاح إدارته في هذه الجلسة فقط.':shared?'نُشر إعلانك في السوق':'حُفظ إعلانك على هذا المتصفح فقط');
+    }catch(error){if(document.getElementById('marketForm')===form){formError(error.message);$('marketSubmit').disabled=false;}}
+  }
+  async function mutate(id,operation) {
+    const item=records.find(l=>l.id===id);if(!item||!own(item))return;
+    try{
+      const status=item.status==='active'?'sold':'active';
+      if(shared)await api('/'+encodeURIComponent(id),{method:operation==='delete'?'DELETE':'PATCH',headers:{Authorization:'Bearer '+ownership[id]},...(operation==='delete'?{}:{body:JSON.stringify({status})})});
+      const next=operation==='delete'?records.filter(l=>l.id!==id):records.map(l=>l.id===id?{...l,status}:l);
+      if(!shared&&!write('.listings',next))throw new Error('تعذّر حفظ التغيير؛ حاول تحرير مساحة التخزين.');
+      records=next;if(operation==='delete'){delete ownership[id];write('.owners',ownership);}render();closeDialog();showToast(operation==='delete'?'حُذف إعلانك':'حُدّثت حالة الإعلان');
+    }catch(error){showToast(error.message);}
+  }
+  document.addEventListener('click',e=>{
+    const b=e.target.closest('[data-market]');if(!b)return;const id=b.dataset.listing;
+    if(b.dataset.market==='add')addForm();
+    if(b.dataset.market==='details')details(id);
+    if(b.dataset.market==='status')mutate(id,'status');
+    if(b.dataset.market==='delete')openDialog('حذف الإعلان',`<p>هل تريد حذف إعلانك نهائيًا؟</p><div class="detail-buttons"><button class="primary" data-market="confirm-delete" data-listing="${esc(id)}">حذف الإعلان</button><button class="text-btn" data-market="details" data-listing="${esc(id)}">رجوع</button></div>`);
+    if(b.dataset.market==='confirm-delete')mutate(id,'delete');
+  });
+  $('marketAdd').addEventListener('click',addForm);
+  ['marketSearch','marketCity'].forEach(id=>$(id).addEventListener('input',render));
+  ['marketCategory','marketSort','marketMine'].forEach(id=>$(id).addEventListener('change',render));
+  $('marketReset').addEventListener('click',()=>{$('marketSearch').value='';$('marketCity').value='';$('marketCategory').value='all';$('marketSort').value='new';$('marketMine').checked=false;render();});
+  async function init(){
+    if(location.protocol!=='file:')try{const data=await api('',{signal:AbortSignal.timeout(5000)});if(!Array.isArray(data.listings))throw new Error();records=data.listings.filter(valid);shared=true;}catch{}
+    ready=true;$('marketMode').textContent=shared?'السوق متصل · الإعلانات متاحة لزوار الموقع.':'معاينة محلية · إعلاناتك محفوظة في هذا المتصفح فقط. ظهورها لجميع الزوار يحتاج تشغيل خادم السوق المرفق.';render();
+  }
+  init();
+})();
+
 </script>
 </body>
 
