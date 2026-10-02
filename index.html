@@ -1911,9 +1911,8 @@ if(storageFailed)showToast('الحفظ المحلي غير متاح؛ يمكنك
   });
 </script>
 <script src="./market-config.js"></script>
-<script src="./market-cloud.js"></script>
-<script>
-(() => {
+<script src="./market-cloud.js?v=20261002-edit"></script>
+<script>(() => {
   'use strict';
   const categories = {gpu:'كروت الشاشة',parts:'قطع الكمبيوتر',laptop:'لابتوبات وأجهزة',screen:'شاشات',gaming:'ملحقات الألعاب',mobile:'جوالات وأجهزة لوحية',other:'إلكترونيات أخرى'};
   const conditions = ['كالجديد','مستعمل بحالة ممتازة','مستعمل بحالة جيدة','يحتاج إصلاح'];
@@ -1949,13 +1948,15 @@ if(storageFailed)showToast('الحفظ المحلي غير متاح؛ يمكنك
   function details(id) {
     const l=find(id); if(!l)return;
     const gallery=l.images.length?l.images.map(s=>`<img src="${esc(s)}" alt="${esc(l.title)}">`).join(''):placeholder(l);
-    openDialog(l.title,`<div class="details-grid"><div class="market-gallery">${gallery}</div><div><span class="product-type">${esc(categories[l.category])} · ${esc(l.condition)}</span><p class="market-price">${money(l.price)}</p><p>⌖ ${esc(l.city)} · البائع: ${esc(l.seller)}</p><p class="market-description">${esc(l.description)}</p>${l.sample?'<p class="status-note">هذا مثال للتصميم فقط، وليس إعلانًا حقيقيًا للبيع.</p>':l.status==='sold'?'<p class="status-note">تم بيع هذه القطعة.</p>':`<a class="primary market-contact" target="_blank" rel="noopener noreferrer" href="https://wa.me/${l.phone}?text=${encodeURIComponent('السلام عليكم، مهتم بإعلانك على Your Tech: '+l.title)}">تواصل مع البائع عبر واتساب ↗</a>`}${own(l)?`<div class="detail-buttons"><button class="text-btn" data-market="status" data-listing="${esc(l.id)}">${l.status==='sold'?'إعادة عرضه للبيع':'تحديده كمباع'}</button><button class="text-btn" data-market="delete" data-listing="${esc(l.id)}">حذف إعلاني</button></div>`:''}</div></div>`);
+    openDialog(l.title,`<div class="details-grid"><div class="market-gallery">${gallery}</div><div><span class="product-type">${esc(categories[l.category])} · ${esc(l.condition)}</span><p class="market-price">${money(l.price)}</p><p>⌖ ${esc(l.city)} · البائع: ${esc(l.seller)}</p><p class="market-description">${esc(l.description)}</p>${l.sample?'<p class="status-note">هذا مثال للتصميم فقط، وليس إعلانًا حقيقيًا للبيع.</p>':l.status==='sold'?'<p class="status-note">تم بيع هذه القطعة.</p>':`<a class="primary market-contact" target="_blank" rel="noopener noreferrer" href="https://wa.me/${l.phone}?text=${encodeURIComponent('السلام عليكم، مهتم بإعلانك على Your Tech: '+l.title)}">تواصل مع البائع عبر واتساب ↗</a>`}${own(l)?`<div class="detail-buttons"><button class="primary" data-market="edit" data-listing="${esc(l.id)}">تعديل إعلاني</button><button class="text-btn" data-market="status" data-listing="${esc(l.id)}">${l.status==='sold'?'إعادة عرضه للبيع':'تحديده كمباع'}</button><button class="text-btn" data-market="delete" data-listing="${esc(l.id)}">حذف إعلاني</button></div>`:''}</div></div>`);
   }
-  function addForm() {
+  function addForm(editId=null) {
     if(!ready){showToast('انتظر حتى يجهز السوق');return;}
-    if(records.length>=100 && !shared){showToast('وصلت إلى حد الحفظ المحلي. احذف إعلانًا قبل إضافة آخر.');return;}
-    selectedImages=[]; uploadBusy=false;
-    openDialog('أضف قطعتك للبيع',`<form id="marketForm" class="market-form">
+    const item=editId?records.find(l=>l.id===editId):null;
+    if(editId&&(!item||!own(item))){showToast('التعديل متاح لصاحب الإعلان فقط.');return;}
+    if(!item&&records.length>=100 && !shared){showToast('وصلت إلى حد الحفظ المحلي. احذف إعلانًا قبل إضافة آخر.');return;}
+    selectedImages=item?[...item.images]:[]; uploadBusy=false;
+    openDialog(item?'تعديل إعلاني':'أضف قطعتك للبيع',`<form id="marketForm" class="market-form" data-edit-id="${item?esc(item.id):''}">
       <label class="field wide">عنوان الإعلان<input name="title" required maxlength="100" minlength="5" placeholder="مثال: RTX 4070 SUPER مستعمل بحالة ممتازة"></label>
       <label class="field">الفئة<select name="category">${Object.entries(categories).map(([k,v])=>`<option value="${k}">${v}</option>`).join('')}</select></label>
       <label class="field">حالة القطعة<select name="condition">${conditions.map(v=>`<option>${v}</option>`).join('')}</select></label>
@@ -1964,14 +1965,17 @@ if(storageFailed)showToast('الحفظ المحلي غير متاح؛ يمكنك
       <label class="field">اسم البائع<input name="seller" required maxlength="60" autocomplete="name"></label>
       <label class="field">رقم واتساب سعودي<input name="phone" required inputmode="tel" type="tel" dir="ltr" maxlength="16" placeholder="05XXXXXXXX" aria-describedby="marketPhoneNote"><small id="marketPhoneNote">يُتاح الرقم للمهتمين من زر التواصل.</small></label>
       <label class="field wide">وصف القطعة<textarea name="description" required minlength="10" maxlength="2000" placeholder="المواصفات، مدة الاستخدام، الملحقات وأي عيوب…"></textarea></label>
-      <label class="field wide market-upload">صور قطعتك<input id="marketImages" type="file" accept="image/jpeg,image/png,image/webp" multiple required><small>من 1 إلى 3 صور حقيقية، كل صورة حتى 8 ميجابايت.</small><div class="market-previews" id="marketPreviews"></div></label>
+      <label class="field wide market-upload">صور قطعتك<input id="marketImages" type="file" accept="image/jpeg,image/png,image/webp" multiple ${item?'':'required'}><small>من 1 إلى 3 صور حقيقية، كل صورة حتى 8 ميجابايت.${item?' صورك الحالية محفوظة. اختيار صور جديدة يستبدلها.':''}</small><div class="market-previews" id="marketPreviews"></div></label>
       <p class="error-text wide" id="marketFormError" role="alert" hidden></p>
-      <div class="wide"><p class="market-note">${shared?'سيظهر الإعلان لزوار هذا الموقع. إدارة الإعلان متاحة من المتصفح الذي أنشأته فيه.':'هذه معاينة محلية؛ يُحفظ الإعلان في هذا المتصفح ولا يظهر للزوار الآخرين.'}</p><div class="detail-buttons"><button class="primary" id="marketSubmit">${shared?'نشر الإعلان':'حفظ الإعلان محليًا'}</button><button type="button" class="text-btn" data-action="close-dialog">إلغاء</button></div></div>
+      <div class="wide"><p class="market-note">${shared?'سيظهر الإعلان لزوار هذا الموقع. إدارة الإعلان متاحة من المتصفح الذي أنشأته فيه.':'هذه معاينة محلية؛ يُحفظ الإعلان في هذا المتصفح ولا يظهر للزوار الآخرين.'}</p><div class="detail-buttons"><button class="primary" id="marketSubmit">${item?'حفظ التعديلات':shared?'نشر الإعلان':'حفظ الإعلان محليًا'}</button><button type="button" class="text-btn" data-action="close-dialog">إلغاء</button></div></div>
     </form>`);
+    if(item)for(const name of ['title','category','condition','price','city','seller','phone','description'])$('marketForm').elements.namedItem(name).value=item[name];
+    renderPreviews();
     $('marketImages').addEventListener('change',loadImages);
     $('marketForm').addEventListener('submit',submit);
   }
   function formError(message) { if($('marketFormError')) { $('marketFormError').textContent=message; $('marketFormError').hidden=!message; } }
+  function renderPreviews(){ $('marketPreviews').innerHTML=selectedImages.map(s=>`<img src="${esc(s)}" alt="معاينة صورة القطعة">`).join(''); }
   async function resize(file) {
     if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>8*1024*1024)throw new Error('اختر صور JPG أو PNG أو WebP بحجم لا يتجاوز 8 ميجابايت.');
     const bitmap=await createImageBitmap(file); const scale=Math.min(1,1200/Math.max(bitmap.width,bitmap.height));
@@ -1980,16 +1984,18 @@ if(storageFailed)showToast('الحفظ المحلي غير متاح؛ يمكنك
     let result=canvas.toDataURL('image/jpeg',.78); if(!safeImage(result))result=canvas.toDataURL('image/jpeg',.5); if(!safeImage(result))throw new Error('الصورة كبيرة بعد ضغطها؛ اختر صورة أصغر.');return result;
   }
   async function loadImages(e) {
-    const input=e.target,form=input.form;selectedImages=[];formError('');$('marketPreviews').innerHTML='';
-    const files=[...input.files];if(files.length>3){formError('اختر 3 صور كحد أقصى.');input.value='';return;}
+    const input=e.target,form=input.form;formError('');
+    const files=[...input.files];if(!files.length)return;if(files.length>3){formError('اختر 3 صور كحد أقصى.');input.value='';return;}
     uploadBusy=true;$('marketSubmit').disabled=true;input.disabled=true;
-    try{const images=await Promise.all(files.map(resize));if(document.getElementById('marketForm')!==form)return;selectedImages=images;$('marketPreviews').innerHTML=images.map(s=>`<img src="${s}" alt="معاينة صورة القطعة">`).join('');}
+    try{const images=await Promise.all(files.map(resize));if(document.getElementById('marketForm')!==form)return;selectedImages=images;renderPreviews();}
     catch(error){if(document.getElementById('marketForm')===form){formError(error.message);input.value='';}}
     finally{if(document.getElementById('marketForm')===form){uploadBusy=false;$('marketSubmit').disabled=false;input.disabled=false;}}
   }
   async function submit(e) {
     e.preventDefault();if(uploadBusy||!e.target.reportValidity())return;formError('');
     const form=e.target,data=new FormData(form),field=k=>String(data.get(k)||'').trim();
+    const editId=form.dataset.editId,original=editId?records.find(l=>l.id===editId):null;
+    if(editId&&(!original||!own(original))){formError('لا تملك صلاحية تعديل هذا الإعلان.');return;}
     let phone=field('phone').replace(/[\s()+-]/g,'').replace(/[٠-٩]/g,c=>String(c.charCodeAt(0)-1632));if(phone.startsWith('00966'))phone=phone.slice(2);if(/^05\d{8}$/.test(phone))phone='966'+phone.slice(1);
     if(!/^9665\d{8}$/.test(phone)){formError('أدخل رقم واتساب سعوديًا صحيحًا، مثل 05XXXXXXXX.');return;}
     if(!selectedImages.length){formError('أضف صورة واحدة على الأقل لقطعتك.');return;}
@@ -1998,6 +2004,11 @@ if(storageFailed)showToast('الحفظ المحلي غير متاح؛ يمكنك
     $('marketSubmit').disabled=true;
     try {
       let item,token;
+      if(original){
+        if(shared){const result=await api('/'+encodeURIComponent(editId),{method:'PATCH',headers:{Authorization:'Bearer '+ownership[editId]},body:JSON.stringify(l)});item=result.listing||{...original,...l};}
+        else{item={...original,...l};if(!write('.listings',records.map(record=>record.id===editId?item:record)))throw new Error('مساحة الحفظ غير كافية. قلّل حجم الصور.');}
+        records=records.map(record=>record.id===editId?item:record);render();closeDialog();showToast('حُفظت تعديلات إعلانك');return;
+      }
       if(shared){const result=await api('',{method:'POST',body:JSON.stringify(l)});item=result.listing;token=result.ownerToken;}
       else {item={...l,id:crypto.randomUUID(),createdAt:Date.now(),status:'active'};token=crypto.randomUUID();const next=[item,...records];if(!write('.listings',next))throw new Error('مساحة الحفظ غير كافية. قلّل حجم الصور أو احذف إعلانًا قديمًا.');}
       ownership[item.id]=token;const saved=write('.owners',ownership);records=[item,...records];render();closeDialog();$('marketplace').scrollIntoView({behavior:motionBehavior()});
@@ -2018,11 +2029,12 @@ if(storageFailed)showToast('الحفظ المحلي غير متاح؛ يمكنك
     const b=e.target.closest('[data-market]');if(!b)return;const id=b.dataset.listing;
     if(b.dataset.market==='add')addForm();
     if(b.dataset.market==='details')details(id);
+    if(b.dataset.market==='edit')addForm(id);
     if(b.dataset.market==='status')mutate(id,'status');
     if(b.dataset.market==='delete')openDialog('حذف الإعلان',`<p>هل تريد حذف إعلانك نهائيًا؟</p><div class="detail-buttons"><button class="primary" data-market="confirm-delete" data-listing="${esc(id)}">حذف الإعلان</button><button class="text-btn" data-market="details" data-listing="${esc(id)}">رجوع</button></div>`);
     if(b.dataset.market==='confirm-delete')mutate(id,'delete');
   });
-  $('marketAdd').addEventListener('click',addForm);
+  $('marketAdd').addEventListener('click',()=>addForm());
   ['marketSearch','marketCity'].forEach(id=>$(id).addEventListener('input',render));
   ['marketCategory','marketSort','marketMine'].forEach(id=>$(id).addEventListener('change',render));
   $('marketReset').addEventListener('click',()=>{$('marketSearch').value='';$('marketCity').value='';$('marketCategory').value='all';$('marketSort').value='new';$('marketMine').checked=false;render();});
@@ -2038,9 +2050,9 @@ if(storageFailed)showToast('الحفظ المحلي غير متاح؛ يمكنك
   }
   init();
 })();
-
 </script>
 </body>
 
 </html>
+
 

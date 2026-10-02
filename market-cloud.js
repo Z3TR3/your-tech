@@ -60,9 +60,15 @@
       if(!result?.[0])throw new Error('لم يُحفظ الإعلان.');return {listing:listing(result[0]),ownerToken:'supabase'};
     }
     const id=decodeURIComponent(path.slice(1));if(!/^[0-9a-f-]{36}$/.test(id))throw new Error('الإعلان غير صالح.');
-    const endpoint='/rest/v1/market_listings?id=eq.'+encodeURIComponent(id)+'&owner_id=eq.'+encodeURIComponent(auth.user.id)+'&select=id';
-    const result=await request(endpoint,{method,headers:{Prefer:'return=representation'},...(method==='PATCH'?{body:JSON.stringify({status:body.status})}:{})},auth.access_token);
-    if(!result?.length)throw new Error('الإعلان غير موجود أو لا تملك صلاحية إدارته.');return {ok:true};
+    if(!['PATCH','DELETE'].includes(method))throw new Error('العملية غير صالحة.');
+    const endpoint='/rest/v1/market_listings?id=eq.'+encodeURIComponent(id)+'&owner_id=eq.'+encodeURIComponent(auth.user.id)+'&select='+(method==='PATCH'?fields:'id');
+    const payload={};
+    if(method==='PATCH'){
+      for(const name of ['title','category','condition','price','city','seller','phone','description','images','status'])if(body&&Object.prototype.hasOwnProperty.call(body,name))payload[name]=body[name];
+      if(!Object.keys(payload).length)throw new Error('لا توجد تعديلات لحفظها.');
+    }
+    const result=await request(endpoint,{method,headers:{Prefer:'return=representation'},...(method==='PATCH'?{body:JSON.stringify(payload)}:{})},auth.access_token);
+    if(!result?.length)throw new Error('الإعلان غير موجود أو لا تملك صلاحية إدارته.');return method==='PATCH'?{ok:true,listing:listing(result[0])}:{ok:true};
   }
   window.YourTechCloud={configured,get userId(){return session?.user?.id||null;},api};
 })();
