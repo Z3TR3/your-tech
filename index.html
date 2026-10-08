@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,6 +12,12 @@
     href="https://fonts.googleapis.com/css2?family=Changa:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap"
     rel="stylesheet">
     <script src="https://kit.fontawesome.com/be5109ad76.js" crossorigin="anonymous"></script>
+
+  <!-- Bootstrap 5.3.8 RTL: load before the custom theme. -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.rtl.min.css"
+        rel="stylesheet"
+        integrity="sha384-CfCrinSRH2IR6a4e6fy2q6ioOX7O6Mtm1L9vRvFZ1trBncWmMePhzvafv7oIcWiW"
+        crossorigin="anonymous">
 
   <style>
     :root {
@@ -87,7 +92,7 @@
       z-index: 30
     }
 
-    .nav {
+    .site-nav {
       height: 100%;
       display: flex;
       align-items: center;
@@ -506,7 +511,7 @@
       transform: scale(1.06)
     }
 
-    .badge {
+    .product-badge {
       position: absolute;
       top: 11px;
       right: 11px;
@@ -519,7 +524,7 @@
       z-index: 2
     }
 
-    .badge.sale {
+    .product-badge.sale {
       background: var(--danger)
     }
 
@@ -889,7 +894,7 @@
       visibility: visible
     }
 
-    .toast {
+    .site-toast {
       position: fixed;
       z-index: 70;
       right: 50%;
@@ -905,7 +910,7 @@
       transition: .35s
     }
 
-    .toast.show {
+    .site-toast.show {
       transform: translate(50%, 0)
     }
 .payment-methods {
@@ -975,7 +980,7 @@
         height: 68px
       }
 
-      .nav {
+      .site-nav {
         gap: 8px
       }
 
@@ -1173,8 +1178,8 @@ dialog::backdrop { background: #000b; backdrop-filter: blur(3px); }
 .shipping-note { font-size: .875rem; line-height: 1.7; }
 .shipping-progress { width: 100%; height: 9px; accent-color: var(--cyan); }
 .checkout { width: 100%; border: 0; font-size: 1rem; }
-.toast { max-width: min(560px, calc(100% - 24px)); text-align: center; bottom: 85px; }
-.toast .text-btn { margin-inline-start: 10px; background: transparent; color: #06312e; border-color: #06312e; }
+.site-toast { max-width: min(560px, calc(100% - 24px)); text-align: center; bottom: 85px; }
+.site-toast .text-btn { margin-inline-start: 10px; background: transparent; color: #06312e; border-color: #06312e; }
 .status-note { padding: 12px 16px; border-inline-start: 3px solid var(--cyan); background: var(--surface2); line-height: 1.8; }
 .print-summary { display: none; }
 .footer-col:last-child { display: block; }
@@ -1195,7 +1200,7 @@ html[data-theme="light"] .hero .primary, html[data-theme="light"] .promo .primar
   .advanced-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 560px) {
-  .nav { gap: 6px; }
+  .site-nav { gap: 6px; }
   .brand { font-size: 18px; gap: 6px; }
   .brand-mark { width: 27px; height: 29px; }
   .nav-actions { gap: 0; }
@@ -1274,9 +1279,41 @@ html[data-theme="light"] .hero .primary, html[data-theme="light"] .promo .primar
 .market-empty { grid-column:1/-1; padding:50px 20px; text-align:center; border:1px dashed #59616d; border-radius:16px; color:var(--muted); }
 .market-empty h3 { color:var(--text); }
 .market-mode { padding:12px 16px; border:1px solid #404753; border-radius:10px; margin-top:16px; color:var(--muted); line-height:1.7; font-size:13px; }
-@media(min-width:901px) and (max-width:1100px) { .nav { gap:12px; } .nav-links { gap:12px; } .nav-links a { font-size:13px; } }
+@media(min-width:901px) and (max-width:1100px) { .site-nav { gap:12px; } .nav-links { gap:12px; } .nav-links a { font-size:13px; } }
 @media(max-width:900px) { .market-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .market-tools { grid-template-columns:1fr 1fr; } }
 @media(max-width:560px) { .market-heading { align-items:flex-start; flex-direction:column; } .market-heading .primary { width:100%; justify-content:center; } .market-grid,.market-form { grid-template-columns:1fr; } .market-tools { padding:12px; gap:10px; } .market-tools .market-search-field { grid-column:1/-1; } .market-picture { height:220px; } .market-content { padding:16px; } }
+
+  
+/* Keep the original container dimensions alongside Bootstrap. */
+.container { max-width: none; padding-inline: 0; }
+/* Bootstrap form controls inherit the site's dark/light theme. */
+.form-control, .form-select {
+  font-family: inherit;
+  background-color: var(--surface2);
+  color: var(--text);
+  border-color: #68717e;
+}
+.form-control:focus, .form-select:focus {
+  background-color: var(--surface2);
+  color: var(--text);
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 .2rem rgba(33, 230, 209, .18);
+}
+.form-control::placeholder { color: var(--muted); opacity: 1; }
+.field .form-select, .sort.form-select {
+  padding-inline-end: 2.5rem;
+  background-image: var(--bs-form-select-bg-img);
+  background-repeat: no-repeat;
+  background-position: left .75rem center;
+  background-size: 16px 12px;
+}
+.sort.form-select { width: auto; flex-shrink: 0; }
+html:not([data-theme="light"]) .form-select {
+  --bs-form-select-bg-img: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23a8adba' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+}
+/* The newsletter input keeps its existing compact layout. */
+.subscribe .form-control { width: auto; min-width: 0; }
+@media (max-width: 560px) { .subscribe .form-control { width: 100%; } }
 
   </style>
 </head>
@@ -1289,7 +1326,7 @@ html[data-theme="light"] .hero .primary, html[data-theme="light"] .promo .primar
   </div>
 
   <header>
-    <div class="container nav">
+    <div class="container site-nav">
       <a class="brand" href="#top"><span class="brand-mark"></span><span>Your <em>Tech</em></span></a>
       <nav class="nav-links" id="mainNav" aria-label="التنقل الرئيسي">
         <a class="active" href="#top">الرئيسية</a>
@@ -1298,7 +1335,7 @@ html[data-theme="light"] .hero .primary, html[data-theme="light"] .promo .primar
         <a href="#offers">العروض</a>
         <a href="#marketplace">سوق الإلكترونيات</a>
       </nav>
-      <div class="nav-actions">
+      <div class="nav-actions d-flex align-items-center">
         <button class="icon-btn hide-mobile" id="searchButton" aria-label="بحث في المنتجات" title="بحث (/)">⌕</button>
         <button class="icon-btn" id="preferencesButton" aria-label="تفضيلات العرض" title="تفضيلات العرض">⚙</button>
         <button class="icon-btn" id="favoritesButton" aria-label="عرض المفضلة" aria-pressed="false">♡<span class="cart-count" id="favoriteCount">0</span></button>
@@ -1326,7 +1363,7 @@ html[data-theme="light"] .hero .primary, html[data-theme="light"] .promo .primar
         <h1>ابنِ جهاز أحلامك<br><span class="grad">بأداءٍ بلا حدود</span></h1>
         <p>أحدث قطع الكمبيوتر وإكسسوارات الألعاب من أفضل العلامات التجارية، بضمان أصلي وشحن سريع إلى جميع أنحاء المملكة.
         </p>
-        <div class="hero-buttons">
+        <div class="hero-buttons d-flex">
           <a href="#products" class="primary">تسوّق الآن <span>←</span></a>
           <a href="#offers" class="secondary">اكتشف العروض</a>
         </div>
@@ -1357,7 +1394,7 @@ html[data-theme="light"] .hero .primary, html[data-theme="light"] .promo .primar
 
     <section id="accessories">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head d-flex justify-content-between">
           <div><span class="section-kicker">تسوّق حسب الفئة</span>
             <h2 class="section-title">كل ما تحتاجه لبناء جهازك</h2>
           </div>
@@ -1390,19 +1427,19 @@ html[data-theme="light"] .hero .primary, html[data-theme="light"] .promo .primar
 
     <section class="products-area" id="products" tabindex="-1" aria-label="المنتجات">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head d-flex justify-content-between">
           <div><span class="section-kicker">الأكثر طلبًا</span>
             <h2 class="section-title">منتجات مختارة لك</h2>
           </div>
           <a href="#products" class="all-link">عرض كل المنتجات ←</a>
         </div>
         <div class="controls" aria-label="البحث والفلاتر">
-          <div class="search-row"><label for="searchInput" class="sr-only">ابحث باسم المنتج أو الفئة</label><input type="search" id="searchInput" placeholder="ابحث عن منتج، فئة أو علامة تجارية…" autocomplete="off" maxlength="120"><button class="text-btn" id="clearSearch">مسح البحث</button></div>
+          <div class="search-row"><label for="searchInput" class="sr-only visually-hidden">ابحث باسم المنتج أو الفئة</label><input class="form-control" type="search" id="searchInput" placeholder="ابحث عن منتج، فئة أو علامة تجارية…" autocomplete="off" maxlength="120"><button class="text-btn" id="clearSearch">مسح البحث</button></div>
           <div class="advanced-filters">
-            <div class="field"><label for="minPrice">أقل سعر (ر.س)</label><input id="minPrice" type="number" min="0" step="any" inputmode="decimal" placeholder="0" aria-describedby="rangeError"></div>
-            <div class="field"><label for="maxPrice">أعلى سعر (ر.س)</label><input id="maxPrice" type="number" min="0" step="any" inputmode="decimal" placeholder="دون حد" aria-describedby="rangeError"></div>
-            <div class="field"><label for="brandFilter">العلامة التجارية</label><select id="brandFilter"></select></div>
-            <div class="field"><label for="ratingFilter">التقييم</label><select id="ratingFilter"><option value="0">كل التقييمات</option><option value="4">4 نجوم فأكثر</option><option value="5">5 نجوم</option></select></div>
+            <div class="field"><label for="minPrice">أقل سعر (ر.س)</label><input class="form-control" id="minPrice" type="number" min="0" step="any" inputmode="decimal" placeholder="0" aria-describedby="rangeError"></div>
+            <div class="field"><label for="maxPrice">أعلى سعر (ر.س)</label><input class="form-control" id="maxPrice" type="number" min="0" step="any" inputmode="decimal" placeholder="دون حد" aria-describedby="rangeError"></div>
+            <div class="field"><label for="brandFilter">العلامة التجارية</label><select class="form-select" id="brandFilter"></select></div>
+            <div class="field"><label for="ratingFilter">التقييم</label><select class="form-select" id="ratingFilter"><option value="0">كل التقييمات</option><option value="4">4 نجوم فأكثر</option><option value="5">5 نجوم</option></select></div>
           </div>
           <p id="rangeError" class="error-text" role="alert" hidden>أدخل أسعارًا موجبة، واجعل الحد الأعلى أكبر من الحد الأدنى أو مساويًا له.</p>
           <div class="filter-options"><label class="check-label"><input id="offersOnly" type="checkbox">العروض فقط</label><label class="check-label"><input id="favoritesOnly" type="checkbox">المفضلة فقط</label><button class="text-btn" data-action="reset-filters">إعادة ضبط الفلاتر</button></div>
@@ -1414,7 +1451,7 @@ html[data-theme="light"] .hero .primary, html[data-theme="light"] .promo .primar
             <button class="filter" data-filter="gaming">الألعاب</button>
             <button class="filter" data-filter="accessory">إكسسوارات</button>
           </div>
-          <select class="sort" id="sort" aria-label="ترتيب المنتجات">
+          <select class="form-select sort" id="sort" aria-label="ترتيب المنتجات">
             <option value="featured">ترتيب: الأكثر شهرة</option>
             <option value="low">السعر: من الأقل للأعلى</option>
             <option value="high">السعر: من الأعلى للأقل</option>
@@ -1444,10 +1481,10 @@ html[data-theme="light"] .hero .primary, html[data-theme="light"] .promo .primar
       <div class="container">
         <div class="market-heading"><div><span class="market-label">من مجتمع التقنية، لمجتمع التقنية</span><h2 id="marketTitle">سوق <span class="grad">الإلكترونيات</span></h2><p>قطعتك القديمة، بداية جديدة لشخص آخر.<br>اعرض أجهزتك وقطعك المستعملة وتواصل مباشرة مع المهتمين.</p></div><button class="primary" id="marketAdd">＋ أضف إعلانك</button></div>
         <div class="market-tools" aria-label="البحث في سوق الإلكترونيات">
-          <label class="field market-search-field"><span>ابحث عن قطعة</span><input id="marketSearch" type="search" maxlength="120" placeholder="كرت شاشة، لابتوب، شاشة…"></label>
-          <label class="field"><span>الفئة</span><select id="marketCategory"><option value="all">كل الإلكترونيات</option value="gpu">كروت الشاشة</option><option value="parts">قطع الكمبيوتر</option><option value="laptop">لابتوبات وأجهزة</option><option value="screen">شاشات</option><option value="gaming">ملحقات الألعاب</option><option value="mobile">جوالات وأجهزة لوحية</option><option value="other">إلكترونيات أخرى</option></select></label>
-          <label class="field"><span>المدينة</span><input id="marketCity" type="search" maxlength="60" placeholder="كل المدن"></label>
-          <label class="field"><span>الترتيب</span><select id="marketSort"><option value="new">الأحدث أولًا</option><option value="low">الأقل سعرًا</option><option value="high">الأعلى سعرًا</option></select></label>
+          <label class="field market-search-field"><span>ابحث عن قطعة</span><input class="form-control" id="marketSearch" type="search" maxlength="120" placeholder="كرت شاشة، لابتوب، شاشة…"></label>
+          <label class="field"><span>الفئة</span><select class="form-select" id="marketCategory"><option value="all">كل الإلكترونيات</option value="gpu">كروت الشاشة</option><option value="parts">قطع الكمبيوتر</option><option value="laptop">لابتوبات وأجهزة</option><option value="screen">شاشات</option><option value="gaming">ملحقات الألعاب</option><option value="mobile">جوالات وأجهزة لوحية</option><option value="other">إلكترونيات أخرى</option></select></label>
+          <label class="field"><span>المدينة</span><input class="form-control" id="marketCity" type="search" maxlength="60" placeholder="كل المدن"></label>
+          <label class="field"><span>الترتيب</span><select class="form-select" id="marketSort"><option value="new">الأحدث أولًا</option><option value="low">الأقل سعرًا</option><option value="high">الأعلى سعرًا</option></select></label>
         </div>
         <div class="market-mode" id="marketMode" role="status">جارٍ تجهيز السوق…</div>
         <div class="market-summary"><p id="marketCount" role="status" aria-live="polite"></p><label class="check-label"><input type="checkbox" id="marketMine">إعلاناتي فقط</label><button class="text-btn" id="marketReset">مسح الفلاتر</button></div>
@@ -1463,7 +1500,7 @@ html[data-theme="light"] .hero .primary, html[data-theme="light"] .promo .primar
           <h2>احفظ بريدك للتذكير</h2>
           <p>في هذه النسخة يُحفظ البريد على جهازك فقط، ولا يُرسل اشتراك إلى قائمة بريدية.</p>
         </div>
-        <form class="subscribe" id="subscribe"><label for="newsletterEmail" class="sr-only">البريد الإلكتروني للحفظ على هذا الجهاز</label><input type="email" id="newsletterEmail" required maxlength="254" autocomplete="email" placeholder="اكتب بريدك الإلكتروني"><button>حفظ محليًا</button></form>
+        <form class="subscribe" id="subscribe"><label for="newsletterEmail" class="sr-only visually-hidden">البريد الإلكتروني للحفظ على هذا الجهاز</label><input class="form-control" type="email" id="newsletterEmail" required maxlength="254" autocomplete="email" placeholder="اكتب بريدك الإلكتروني"><button>حفظ محليًا</button></form>
       </div>
     </section>
   </main>
@@ -1475,7 +1512,7 @@ html[data-theme="light"] .hero .primary, html[data-theme="light"] .promo .primar
           <a class="brand" href="#top"><span class="brand-mark"></span><span>Your <em>Tech</em></span></a>
           <p class="footer-about">وجهتك الأولى لأحدث قطع الكمبيوتر وإكسسوارات الألعاب. نؤمن أن التقنية الأفضل تجعل كل
             لحظة أقوى.</p>
-          <div class="socials"><a href="#"><i class="fa-brands fa-x-twitter"></i></a><a href="#"><i class="fa-brands fa-facebook"></i></a><a href="#"><i class="fa-brands fa-instagram"></i></a><a href="#"><i class="fa-brands fa-youtube"></i></a></div>
+          <div class="socials d-flex"><a href="#"><i class="fa-brands fa-x-twitter"></i></a><a href="#"><i class="fa-brands fa-facebook"></i></a><a href="#"><i class="fa-brands fa-instagram"></i></a><a href="#"><i class="fa-brands fa-youtube"></i></a></div>
         </div>
         <div class="footer-col">
           <h4>تسوّق</h4><a href="#products">قطع الكمبيوتر</a><a href="#products">أجهزة الألعاب</a><a
@@ -1520,7 +1557,7 @@ html[data-theme="light"] .hero .primary, html[data-theme="light"] .promo .primar
   <dialog class="app-dialog" id="appDialog" aria-labelledby="dialogTitle"><div class="dialog-head"><h2 id="dialogTitle"></h2><button class="close" data-action="close-dialog" aria-label="إغلاق النافذة">×</button></div><div class="dialog-body" id="dialogBody"></div></dialog>
   <div class="compare-bar" id="compareBar" hidden><span id="compareCount"></span><button class="primary" id="showComparison" data-action="show-comparison">قارن الآن</button><button class="text-btn" data-action="clear-comparison">مسح</button></div>
   <button class="back-top" id="backTop" aria-label="العودة إلى أعلى الصفحة" hidden>↑</button>
-  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+  <div class="site-toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
   <div class="print-summary" id="printSummary"></div>
   <noscript><p class="container status-note">فعّل JavaScript لتشغيل البحث والسلة وعرض المنتجات.</p></noscript>
 
@@ -1632,7 +1669,7 @@ function renderProducts() {
   $('rangeError').hidden = priceRange().valid;
   $('resultCount').textContent = `عرض ${data.length} من ${products.length} منتجات`;
   $('productGrid').innerHTML = data.length ? data.map(p => `<article class="product" data-product="${p.id}">
-    <div class="product-image">${p.badge ? `<span class="badge ${p.sale ? 'sale' : ''}">${esc(p.badge)}</span>` : ''}
+    <div class="product-image">${p.badge ? `<span class="product-badge ${p.sale ? 'sale' : ''}">${esc(p.badge)}</span>` : ''}
       <button class="wish ${favorites.includes(p.id) ? 'liked' : ''}" data-action="favorite" data-id="${p.id}" aria-label="مفضلة: ${esc(p.name)}" aria-pressed="${favorites.includes(p.id)}">${favorites.includes(p.id) ? '♥' : '♡'}</button>${imageTag(p)}</div>
     <div class="product-info"><div class="product-type">${esc(p.label)} · ${esc(brand(p))}</div>
       <h3><button class="product-title" data-action="details" data-id="${p.id}">${esc(p.name)}</button></h3>
@@ -1679,7 +1716,7 @@ function renderDetails(id) {
   const currentQty=$('detailQty')?.value || 1;
   openDialog('تفاصيل المنتج', `<div class="details-grid">${imageTag(p,'details-image')}<div><div class="product-type">${esc(p.label)} · ${esc(brand(p))}</div><h3>${esc(p.name)}</h3>
     <p class="price">${money(p.price)}</p>${isSale(p) ? `<p>السعر السابق <s>${money(p.old)}</s> · وفّر ${money(p.old-p.price)}</p>` : ''}<p>التقييم: ${stars(p)} من 5</p>
-    <label class="field">الكمية<input class="detail-qty" id="detailQty" type="number" min="1" max="99" step="1" value="${quantity(currentQty)}"></label>
+    <label class="field">الكمية<input class="form-control detail-qty" id="detailQty" type="number" min="1" max="99" step="1" value="${quantity(currentQty)}"></label>
     <div class="detail-buttons"><button class="primary" data-action="detail-add" data-id="${id}">أضف للسلة</button><button class="text-btn" data-action="favorite" data-id="${id}" aria-pressed="${favorites.includes(id)}">${favorites.includes(id)?'♥ محفوظ':'♡ المفضلة'}</button><button class="text-btn" data-action="share" data-id="${id}">نسخ رابط المنتج</button></div></div></div>
     ${related.length ? `<h3>منتجات من الفئة نفسها</h3><div class="recent-items">${related.map(x=>`<button class="recent-item" data-action="details" data-id="${x.id}">${imageTag(x)}<span>${esc(x.name)}</span></button>`).join('')}</div>`:''}`);
   detailsId=id;
@@ -1711,13 +1748,13 @@ function showComparison() {
   if (comparison.length<2) { showToast('اختر منتجين على الأقل للمقارنة'); return; }
   const list=comparison.map(byId);
   const rows=[['المنتج',p=>`${imageTag(p)}<p>${esc(p.name)}</p>`],['الفئة',p=>esc(p.label)],['العلامة',p=>esc(brand(p))],['السعر',p=>money(p.price)],['التوفير',p=>isSale(p)?money(p.old-p.price):'لا يوجد سعر مخفّض'],['التقييم',p=>`${stars(p)} / 5`],['السلة',p=>`<button class="primary" data-action="add" data-id="${p.id}">أضف للسلة</button>`]];
-  openDialog('مقارنة المنتجات',`<div class="compare-wrap"><table class="compare-table"><caption class="sr-only">مقارنة بيانات المنتجات المختارة</caption><thead><tr><th scope="col">البند</th>${list.map((p,i)=>`<th scope="col">المنتج ${i+1}</th>`).join('')}</tr></thead><tbody>${rows.map(([label,render])=>`<tr><th scope="row">${label}</th>${list.map(p=>`<td>${render(p)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`);
+  openDialog('مقارنة المنتجات',`<div class="compare-wrap"><table class="compare-table"><caption class="sr-only visually-hidden">مقارنة بيانات المنتجات المختارة</caption><thead><tr><th scope="col">البند</th>${list.map((p,i)=>`<th scope="col">المنتج ${i+1}</th>`).join('')}</tr></thead><tbody>${rows.map(([label,render])=>`<tr><th scope="row">${label}</th>${list.map(p=>`<td>${render(p)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`);
 }
 async function shareProduct(id) {
   if (!byId(id)) return;
   const url=new URL(location.href); url.searchParams.set('product',String(id));
   try { await navigator.clipboard.writeText(url.href); showToast('نُسخ رابط المنتج'); }
-  catch { openDialog('رابط المنتج',`<p>انسخ الرابط التالي. روابط الملفات المحلية تعمل على الجهاز الذي يحتوي على الملف.</p><label class="field">الرابط<input class="share-input" id="shareLink" readonly value="${esc(url.href)}" dir="ltr"></label>`); $('shareLink').select(); }
+  catch { openDialog('رابط المنتج',`<p>انسخ الرابط التالي. روابط الملفات المحلية تعمل على الجهاز الذي يحتوي على الملف.</p><label class="field">الرابط<input class="form-control share-input" id="shareLink" readonly value="${esc(url.href)}" dir="ltr"></label>`); $('shareLink').select(); }
 }
 
 // 35-44: persistent validated cart, line controls, undo, totals and shipping progress.
@@ -1757,7 +1794,7 @@ function renderCart() {
   $('cartCount').textContent=t.count; $('cartTitleCount').textContent=t.count?`(${t.count})`:'';
   $('total').textContent=money(t.subtotal);
   $('cartItems').innerHTML=cart.length?cart.map(i=>{ const p=byId(i.id); return `<div class="cart-item">${imageTag(p)}<div class="cart-item-info"><h4>${esc(p.name)}</h4><span>${money(p.price)} للوحدة</span><p class="price">المجموع: ${money(p.price*i.qty)}</p></div>
-    <div class="cart-item-tools"><div class="qty"><button data-action="increase" data-id="${i.id}" aria-label="زيادة كمية ${esc(p.name)}" ${i.qty>=99?'disabled':''}>+</button><input aria-label="كمية ${esc(p.name)}" data-qty="${i.id}" type="number" min="1" max="99" step="1" value="${i.qty}"><button data-action="decrease" data-id="${i.id}" aria-label="تقليل كمية ${esc(p.name)}">−</button></div><button class="text-btn" data-action="remove" data-id="${i.id}">حذف</button><button class="text-btn" data-action="save-later" data-id="${i.id}">حفظ للمفضلة</button></div></div>`; }).join(''):'<div class="empty"><h3>سلتك فارغة حاليًا</h3><p>استعرض المنتجات لإضافة ما تحتاجه.</p><button class="primary" data-action="continue-shopping">متابعة التسوق</button></div>';
+    <div class="cart-item-tools"><div class="qty"><button data-action="increase" data-id="${i.id}" aria-label="زيادة كمية ${esc(p.name)}" ${i.qty>=99?'disabled':''}>+</button><input class="form-control" aria-label="كمية ${esc(p.name)}" data-qty="${i.id}" type="number" min="1" max="99" step="1" value="${i.qty}"><button data-action="decrease" data-id="${i.id}" aria-label="تقليل كمية ${esc(p.name)}">−</button></div><button class="text-btn" data-action="remove" data-id="${i.id}">حذف</button><button class="text-btn" data-action="save-later" data-id="${i.id}">حفظ للمفضلة</button></div></div>`; }).join(''):'<div class="empty"><h3>سلتك فارغة حاليًا</h3><p>استعرض المنتجات لإضافة ما تحتاجه.</p><button class="primary" data-action="continue-shopping">متابعة التسوق</button></div>';
   $('savings').textContent=money(t.savings); $('shippingLabel').textContent=ship.label;
   $('shippingProgress').value=Math.min(500,t.subtotal);
   $('shippingNote').textContent=!cart.length?'الشحن المجاني للطلبات بقيمة 500 ر.س فأكثر.':ship.free?'وصلت إلى حد الشحن المجاني.':`أضف منتجات بقيمة ${money(ship.remaining)} للحصول على شحن مجاني. رسوم الشحن الحالية غير محددة.`;
@@ -1796,7 +1833,7 @@ function printSummary() {
 function openCart() { renderCart(); if(!$('cartPanel').open) $('cartPanel').showModal(); }
 function closeCart() { $('cartPanel').close(); }
 function openPreferences() {
-  openDialog('تفضيلات العرض',`<div class="advanced-filters"><label class="field">المظهر<select id="themePreference"><option value="dark" ${preferences.theme==='dark'?'selected':''}>داكن</option><option value="light" ${preferences.theme==='light'?'selected':''}>فاتح</option></select></label><label class="field">حجم النص<select id="fontPreference"><option value="normal" ${preferences.font==='normal'?'selected':''}>عادي</option><option value="large" ${preferences.font==='large'?'selected':''}>كبير</option></select></label></div><p class="muted">تُحفظ تفضيلات العرض على هذا الجهاز.</p><p class="muted">${storageFailed?'التخزين المحلي غير متاح؛ التغييرات تعمل في الجلسة الحالية فقط.':''}</p>`);
+  openDialog('تفضيلات العرض',`<div class="advanced-filters"><label class="field">المظهر<select class="form-select" id="themePreference"><option value="dark" ${preferences.theme==='dark'?'selected':''}>داكن</option><option value="light" ${preferences.theme==='light'?'selected':''}>فاتح</option></select></label><label class="field">حجم النص<select class="form-select" id="fontPreference"><option value="normal" ${preferences.font==='normal'?'selected':''}>عادي</option><option value="large" ${preferences.font==='large'?'selected':''}>كبير</option></select></label></div><p class="muted">تُحفظ تفضيلات العرض على هذا الجهاز.</p><p class="muted">${storageFailed?'التخزين المحلي غير متاح؛ التغييرات تعمل في الجلسة الحالية فقط.':''}</p>`);
 }
 
 // 01-09: responsive navigation, keyboard entry points and saved display preferences.
@@ -1957,14 +1994,14 @@ if(storageFailed)showToast('الحفظ المحلي غير متاح؛ يمكنك
     if(!item&&records.length>=100 && !shared){showToast('وصلت إلى حد الحفظ المحلي. احذف إعلانًا قبل إضافة آخر.');return;}
     selectedImages=item?[...item.images]:[]; uploadBusy=false;
     openDialog(item?'تعديل إعلاني':'أضف قطعتك للبيع',`<form id="marketForm" class="market-form" data-edit-id="${item?esc(item.id):''}">
-      <label class="field wide">عنوان الإعلان<input name="title" required maxlength="100" minlength="5" placeholder="مثال: RTX 4070 SUPER مستعمل بحالة ممتازة"></label>
-      <label class="field">الفئة<select name="category">${Object.entries(categories).map(([k,v])=>`<option value="${k}">${v}</option>`).join('')}</select></label>
-      <label class="field">حالة القطعة<select name="condition">${conditions.map(v=>`<option>${v}</option>`).join('')}</select></label>
-      <label class="field">السعر (ر.س)<input name="price" required type="number" min="1" max="1000000" step="0.01" placeholder="1850"></label>
-      <label class="field">المدينة<input name="city" required maxlength="60" placeholder="الرياض"></label>
-      <label class="field">اسم البائع<input name="seller" required maxlength="60" autocomplete="name"></label>
-      <label class="field">رقم واتساب سعودي<input name="phone" required inputmode="tel" type="tel" dir="ltr" maxlength="16" placeholder="05XXXXXXXX" aria-describedby="marketPhoneNote"><small id="marketPhoneNote">يُتاح الرقم للمهتمين من زر التواصل.</small></label>
-      <label class="field wide">وصف القطعة<textarea name="description" required minlength="10" maxlength="2000" placeholder="المواصفات، مدة الاستخدام، الملحقات وأي عيوب…"></textarea></label>
+      <label class="field wide">عنوان الإعلان<input class="form-control" name="title" required maxlength="100" minlength="5" placeholder="مثال: RTX 4070 SUPER مستعمل بحالة ممتازة"></label>
+      <label class="field">الفئة<select class="form-select" name="category">${Object.entries(categories).map(([k,v])=>`<option value="${k}">${v}</option>`).join('')}</select></label>
+      <label class="field">حالة القطعة<select class="form-select" name="condition">${conditions.map(v=>`<option>${v}</option>`).join('')}</select></label>
+      <label class="field">السعر (ر.س)<input class="form-control" name="price" required type="number" min="1" max="1000000" step="0.01" placeholder="1850"></label>
+      <label class="field">المدينة<input class="form-control" name="city" required maxlength="60" placeholder="الرياض"></label>
+      <label class="field">اسم البائع<input class="form-control" name="seller" required maxlength="60" autocomplete="name"></label>
+      <label class="field">رقم واتساب سعودي<input class="form-control" name="phone" required inputmode="tel" type="tel" dir="ltr" maxlength="16" placeholder="05XXXXXXXX" aria-describedby="marketPhoneNote"><small id="marketPhoneNote">يُتاح الرقم للمهتمين من زر التواصل.</small></label>
+      <label class="field wide">وصف القطعة<textarea class="form-control" name="description" required minlength="10" maxlength="2000" placeholder="المواصفات، مدة الاستخدام، الملحقات وأي عيوب…"></textarea></label>
       <label class="field wide market-upload">صور قطعتك<input id="marketImages" type="file" accept="image/jpeg,image/png,image/webp" multiple ${item?'':'required'}><small>من 1 إلى 3 صور حقيقية، كل صورة حتى 8 ميجابايت.${item?' صورك الحالية محفوظة. اختيار صور جديدة يستبدلها.':''}</small><div class="market-previews" id="marketPreviews"></div></label>
       <p class="error-text wide" id="marketFormError" role="alert" hidden></p>
       <div class="wide"><p class="market-note">${shared?'سيظهر الإعلان لزوار هذا الموقع. إدارة الإعلان متاحة من المتصفح الذي أنشأته فيه.':'هذه معاينة محلية؛ يُحفظ الإعلان في هذا المتصفح ولا يظهر للزوار الآخرين.'}</p><div class="detail-buttons"><button class="primary" id="marketSubmit">${item?'حفظ التعديلات':shared?'نشر الإعلان':'حفظ الإعلان محليًا'}</button><button type="button" class="text-btn" data-action="close-dialog">إلغاء</button></div></div>
@@ -2051,8 +2088,10 @@ if(storageFailed)showToast('الحفظ المحلي غير متاح؛ يمكنك
   init();
 })();
 </script>
+  <!-- Bootstrap bundle includes Popper. -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+          crossorigin="anonymous"></script>
 </body>
 
 </html>
-
-
